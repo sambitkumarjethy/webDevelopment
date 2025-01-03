@@ -1,7 +1,11 @@
 import "./App.css";
 
 function App() {
-  return <div className="App">Namste, lets build Netflix </div>;
+  return (
+    <div className="text-3xl font-bold text-green-800">
+      Namste, lets build Netflix{" "}
+    </div>
+  );
 }
 
 export default App;
