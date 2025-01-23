@@ -4,8 +4,11 @@
 -configured TailwindCSS
 
 - Header
+- Routing
   -login form
   -signUp form
+  -form validation
+  -useRef Hook
 
 # Fearures
 
