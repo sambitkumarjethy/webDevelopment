@@ -9,6 +9,9 @@
   -signUp form
   -form validation
   -useRef Hook
+  -firebase setup
+  -deploying App to production
+  -create signup user Account
 
 # Fearures
 
