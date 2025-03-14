@@ -1,0 +1,89 @@
+public class Hello{
+    public static void main(String[] args){
+        System.out.println("Hello World");
+    }
+}
+
+public -> access modifier
+class -> category
+static -> access modifier makes memory efficient
+void -> return type
+ public static void main(String[] args) -> method
+ String[] args -> command line arguments
+ "Hello World" -> string
+ println -> method
+ System -> class
+ out -> out is static member of System class
+
+ INTERNAL WORKING
+ ________________________
+ JAVA - Platform independent Library ( widows , linux ,mac are the platforms here). How ?
+ psvm - public static void main
+ JRE - JAVA RUN TIME ENGINE
+ JVM - JAVA VIRTUAL MACHINE
+ JDK - JAVA DEVELOPMENT KIT
+ keywords -> public, static ,void etc
+
+HOW it is possible ?
+
+JAVA class hello{
+    psvm(string[] args{
+        sout("hello");
+    }
+}
+
+ -- > the above code gets converted to Byte code when the code gets compiled by compiler
+
+ --> Then it goes to running state and can be run in different O/S
+
+ --> then it goes to running state . to run this we need run time environment . to run we need JRE.
+ --> JRE helps to run the code in different environment.
+ --> inside JRE JVM runs
+--> JRE + JVM Bundle is called JDK
+
+public static void main -> main is the main gate
+--> we can make only one public static void main
+
+Important note
+______________
+To run the file in terminal we need to follow this steps
+ 1. Run > javac Hello.java
+ --> IMP --> The javac command is used to compile Java source files into bytecode. Let's break it down:
+
+ 2. What Happens Internally?
+ The Java Compiler (javac) reads the Hello.java file.
+ It checks for syntax errors.
+ If there are no errors, it generates a bytecode file (Hello.class).
+ The bytecode can then be executed by the JVM (Java Virtual Machine).
+
+ 3. Next Step: Running the Program
+ Once compiled, you run the program using:
+java Hello
+java → Runs the compiled .class file.
+Hello → Refers to the class name (without .java or .class).
+
+Passing of arguments
+_______________________________
+ex 1. java Hello 1,2.3.4.5,6,7;
+System.out.println(args[0]);
+
+jex2 .java Hello 1,2.3.4.5,6,7  sambit
+System.out.println(args[1]);
+
+1,2.3.4.5,6,7 -> command line arguments
+
+_________________________________________________________________________________________________________
+
+DATA TYPES & VARIABLE
+
+1.variable name -> where data is stored
+2. variables are also used to perform mathematical calculation
+3. There are 2 types of data types --> A . Primitive
+                                   ---> B . Derived ( Non primitive )
+
+
+
+
+
+
+
