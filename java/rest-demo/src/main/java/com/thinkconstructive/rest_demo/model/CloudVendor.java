@@ -1,4 +1,4 @@
-package model;
+package com.thinkconstructive.rest_demo.model;
 
 public class CloudVendor {
     private String vendorId;
