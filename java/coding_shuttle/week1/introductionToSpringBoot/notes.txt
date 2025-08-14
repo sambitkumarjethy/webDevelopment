@@ -1,0 +1,6 @@
+@SpringBootApplication
+________________________
+
+1. It is the starting point of application
+2. One application can have only one SpringBootApplication
+3. Every thing is a Bean in spring Boot Application
