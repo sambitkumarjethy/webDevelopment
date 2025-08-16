@@ -20,15 +20,17 @@ public class IntroductionToSpringBootApplication  implements CommandLineRunner {
 
 	@Autowired
 	Orange orange2;
+
+	@Autowired
+	private DBService dbService;
 	public static void main(String[] args) {
 		SpringApplication.run(IntroductionToSpringBootApplication.class, args);
 
 		//		Apple obj = new Apple();
 		//		obj.eatApple();
 
-//		Orange obj = new Orange();
-//		obj.eatOrange();
-
+		// Orange obj = new Orange();
+		// obj.eatOrange();
 	}
 
 	@Override
@@ -43,7 +45,10 @@ public class IntroductionToSpringBootApplication  implements CommandLineRunner {
 		System.out.println(orange2.hashCode());
 
 		// Manually destroy
-//		((DisposableBean) orange1).destroy();
-//		((DisposableBean) orange2).destroy();
+		//		((DisposableBean) orange1).destroy();
+		//		((DisposableBean) orange2).destroy();
+
+
+		System.out.println(dbService.getData());
 	}
 }
