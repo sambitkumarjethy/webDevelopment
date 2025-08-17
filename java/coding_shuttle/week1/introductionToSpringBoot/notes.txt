@@ -14,3 +14,24 @@ ________________________
 1. It is the starting point of application
 2. One application can have only one SpringBootApplication
 3. Every thing is a Bean in spring Boot Application
+
+
+1.5 Spring Boot vs Spring Framework
+____________________________________________
+
+1. Starter Dependency → The dependency on Pom.xml.
+Auto Configuration → Means will put all the dependency in class and auto configuration.
+Example: External Library → springframework.boot:spring-boot-autoconfigure:3.5.4
+
+
+2. Externalized Configuration
+Example: application.properties, Environment Variables
+
+
+3. Embedded Tomcat Jetty Servers
+Example: Dependency listed in Pom.xml file
+
+
+4. Built-in metrics & Health Checks
+Here the dependency version is managed by Spring Boot.
+Example: version of MongoDB.
