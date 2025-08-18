@@ -35,3 +35,22 @@ Example: Dependency listed in Pom.xml file
 4. Built-in metrics & Health Checks
 Here the dependency version is managed by Spring Boot.
 Example: version of MongoDB.
+
+
+1.6 = Auto Configurations, Application Context and Internal working of a Spring Application.
+___________________________________________________________________________
+
+Pom.xml → Maven is a popular build automation tool used in many Java projects. In Spring Boot project, dependencies are specified in pom.xml file.
+Maven then also resolves these dependencies and includes them in the classpath.
+
+
+→ Starter like Spring Boot Starter
+Stater (sic) usually include a ton of third-party libraries onto your project by default.
+Its Auto Configuration uses these dependencies to setup and pre-config these libraries automatically.
+
+What is Auto Configuration?
+_____________________
+Auto Configuration refers to the mechanism that automatically configures Spring Boot app based on dependencies present on the
+ classpath and other application-specific settings.
+
+This feature simplifies the setup and development process allowing developers to focus more on writing business logic rather than configuring the framework.
