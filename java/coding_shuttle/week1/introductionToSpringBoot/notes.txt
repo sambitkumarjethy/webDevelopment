@@ -54,3 +54,150 @@ Auto Configuration refers to the mechanism that automatically configures Spring 
  classpath and other application-specific settings.
 
 This feature simplifies the setup and development process allowing developers to focus more on writing business logic rather than configuring the framework.
+
+
+Steps How AutoConfiguration Works
+_______________________________
+
+(1) Class Path Scanning
+
+Spring Boot scans the classpath for the presence of certain libraries and classes.
+
+Based on what it finds, it applies corresponding configurations.
+
+(2) Configuration Classes
+
+Spring Boot contains numerous auto-configuration classes, each responsible for configuring a specific part of the application.
+
+
+(3) Conditional Beans
+
+
+Each auto-configuration class uses conditional checks to decide if it should be applied.
+
+These conditional checks include the presence of specific classes, the absence of user-defined beans, and specific property settings.
+
+In short:
+
+Scan the classpath and find libraries and classes.
+
+Find its corresponding class and suitable auto-configuration class.
+
+Use conditional checks for multiple different features, deciding whether to configure or not.
+
+
+Core Features of AutoConfiguration
+________________________________
+
+(1) @PropertySources Auto-registration
+
+When you run the main method of your Spring Boot Application, SB will automatically register it if the property sources are found.
+
+It creates all beans on application start-up.
+
+(2) META-INF / Spring.factories (Spring Boot)
+
+The AutoConfiguration imports everything.
+
+(3) Every SB project has a dependency on the following library:
+
+    org.springframework.boot.autoconfigure
+
+    This contains a sample list in the file spring.factories, which pretty much auto-configures all of the Spring Boot magic.
+
+    Advanced Conditional Statements Support
+
+    Spring Boot comes with its own set of additional @Conditional annotations, which make developers’ lives easier.
+
+Examples:
+
+@ConditionalOnBean(DataSource.class) → Condition is true only if a DataSource @Bean is in a @Configuration.
+
+@ConditionalOnClass(DataSource.class) → Condition is true if the DataSource class is on the classpath.
+
+@ConditionalOnProperty("my.property") → Condition is true if my.property is set.
+
+So basically, Spring Boot includes a bunch of auto-configurations (classes annotated with @Configuration)
+that create @Beans for you if certain @Conditions are met.
+
+Application Context
+    |
+    |--- IOC Container
+             |
+             |--- Component Scanning
+             |
+             |--- Configuration
+                     |
+                     |--- External Configuration (Properties, YAML)
+                     |
+                     |--- Conditional Beans
+                             |
+                             |--- POJO Class
+                             |--- Spring Payment
+                             |--- Razor Payment
+
+
+
+Internal Working of Spring Boot
+___________________
+
+Flow Diagram Explanation
+
+POJO Classes
+
+StripePayment
+
+RazorpayPayment
+
+These classes go into IOC Container via Component Scanning.
+
+External Configurations (environment variables, property files) are also fed into the IOC Container.
+
+IOC Container then creates the Application Context (bunch of beans).
+
+
+
+Step-by-Step Process
+________________________
+
+JVM starts and main() method is executed.
+
+SpringApplication.run(MyApp.class, args) is called.
+
+Spring Boot detects:
+
+@SpringBootApplication on MyApp.class, which includes:
+
+@SpringBootConfiguration → Marks as @Configuration.
+
+@ComponentScan → Scans current package & sub-packages.
+
+@EnableAutoConfiguration → Loads auto-configs from spring.factories.
+
+Creates a SpringApplication object:
+
+Sets up ApplicationContext.
+
+Sets up Environment.
+
+Registers Listeners and Initializers.
+
+ApplicationContext is created.
+
+Environment is prepared (e.g., application.properties, args, profiles).
+
+Beans are scanned and registered via @ComponentScan and auto-configured beans are registered (e.g., DataSource, WebServer).
+
+ApplicationContext is refreshed:
+
+All beans are created.
+
+Dependencies are autowired.
+
+Lifecycle methods are called.
+
+Embedded Web Server (e.g., Tomcat) is started.
+
+CommandLineRunner or ApplicationRunner beans (if any) are executed.
+
+Application is now fully started and ready to serve requests.
