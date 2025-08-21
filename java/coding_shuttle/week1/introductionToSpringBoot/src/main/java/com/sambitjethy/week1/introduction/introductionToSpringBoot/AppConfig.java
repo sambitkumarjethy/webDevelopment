@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Scope;
 @Configuration
 @Scope("singleton") // Default
 public class AppConfig {
-//    @Bean
-//    Orange getOrrange() {
-//        return new Orange();
-//    }
+    @Bean
+    Orange getOrange() {
+        return new Orange();
+    }
 
     @Bean
     Apple getApple(){
