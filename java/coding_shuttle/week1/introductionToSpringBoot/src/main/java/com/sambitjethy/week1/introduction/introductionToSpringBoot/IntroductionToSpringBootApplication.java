@@ -15,11 +15,11 @@ public class IntroductionToSpringBootApplication  implements CommandLineRunner {
 	@Autowired
 	Apple apple2;
 
-	@Autowired
-	Orange orange1;
-
-	@Autowired
-	Orange orange2;
+//	@Autowired
+//	Orange orange1;
+//
+//	@Autowired
+//	Orange orange2;
 
 	@Autowired
 	private DBService dbService;
@@ -38,11 +38,11 @@ public class IntroductionToSpringBootApplication  implements CommandLineRunner {
 
 		apple1.eatApple();
 		apple2.eatApple();
-		orange1.eatOrange();
-		orange2.eatOrange();
+//		orange1.eatOrange();
+//		orange2.eatOrange();
 
-		System.out.println(orange1.hashCode());
-		System.out.println(orange2.hashCode());
+//		System.out.println(orange1.hashCode());
+//		System.out.println(orange2.hashCode());
 
 		// Manually destroy
 		//		((DisposableBean) orange1).destroy();
