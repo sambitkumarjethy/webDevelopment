@@ -2,7 +2,7 @@ package com.sambit.week2mvn.mvnrestapi.controllers;
 
 import com.sambit.week2mvn.mvnrestapi.dto.EmployeeDTO;
 import com.sambit.week2mvn.mvnrestapi.entities.EmployeeEntity;
-import com.sambit.week2mvn.mvnrestapi.repositories.EmployeeRepository;
+import com.sambit.week2mvn.mvnrestapi.services.EmployeeService;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -13,11 +13,14 @@ import java.util.UUID;
 @RequestMapping(path = "/employees")
 
 public class EmployeeController {
-    private final EmployeeRepository employeeRepository;
 
-    public EmployeeController( EmployeeRepository employeeRepository){
-        this.employeeRepository = employeeRepository;
+
+    private final EmployeeService employeeService;
+
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
+
 
 
     @GetMapping(path="/getMessage")
@@ -25,25 +28,20 @@ public class EmployeeController {
         return " Message : Hi , From Employee Controller!!";
     }
     @GetMapping(path="/{employeeId}")
-    public EmployeeEntity getEmployeeById(@PathVariable(name="employeeId") Long id ){
-       // return new EmployeeDTO( id , "Sambit", "sambit@gmail.com", 30, LocalDate.of(2025, 8 , 31), true);
-        return employeeRepository.findById(id).orElse(null);
+    public EmployeeDTO getEmployeeById(@PathVariable(name="employeeId") Long id ){
+        return employeeService.getEmployeeById(id);
     }
 
     @GetMapping
-    public List<EmployeeEntity> getAllEmployees(@RequestParam(required=false , name = "inputAge") Integer age, @RequestParam(required=false) String  sortBy){
-     //   return "Hi age - "+age  + " sort By - " + sortBy;
+    public List<EmployeeDTO> getAllEmployees(@RequestParam(required=false , name = "inputAge") Integer age, @RequestParam(required=false) String  sortBy){
 
-        return employeeRepository.findAll();
+        return employeeService.getAllEmployees();
     }
 
     @PostMapping
-    public EmployeeEntity createNewEmployee(@RequestBody EmployeeEntity inputEmployee){
-//       long randomId = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
-//       inputEmployee.setId(randomId);
-//        return inputEmployee;
+    public EmployeeDTO createNewEmployee(@RequestBody EmployeeDTO inputEmployee){
 
-        return employeeRepository.save(inputEmployee);
+        return employeeService.createEmployee(inputEmployee);
     }
 
     @PutMapping String updateEmployeeId(){
