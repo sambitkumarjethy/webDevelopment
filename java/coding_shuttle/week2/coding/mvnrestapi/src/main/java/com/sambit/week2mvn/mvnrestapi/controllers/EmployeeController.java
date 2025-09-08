@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -44,8 +45,21 @@ public class EmployeeController {
         return employeeService.createEmployee(inputEmployee);
     }
 
-    @PutMapping String updateEmployeeId(){
-        return "Hello from Put";
+    @PutMapping(path="/{employeeId}")
+    public EmployeeDTO updateEmployeeId( @RequestBody EmployeeDTO employeeDTO, @PathVariable Long employeeId)
+    {
+        return employeeService.updateEmpleeById(employeeId, employeeDTO);
     }
+
+    @DeleteMapping(path="/{employeeId}")
+    public boolean deleteEmployeeId( @PathVariable Long employeeId){
+       return employeeService.deleteEmployeeById(employeeId);
+    }
+
+    @PatchMapping(path="/{employeeId}")
+    public boolean updatePartialEmployeeById(@RequestBody Map<String,Object> updates, @PathVariable Long employeeId){
+        return employeeService.updatePartialEmployeeByID(employeeId, updates);
+    }
+
 
 }
