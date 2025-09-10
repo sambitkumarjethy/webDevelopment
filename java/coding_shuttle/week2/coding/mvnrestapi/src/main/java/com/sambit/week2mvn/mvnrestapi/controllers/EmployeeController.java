@@ -57,7 +57,7 @@ public class EmployeeController {
     }
 
     @PatchMapping(path="/{employeeId}")
-    public boolean updatePartialEmployeeById(@RequestBody Map<String,Object> updates, @PathVariable Long employeeId){
+    public EmployeeDTO updatePartialEmployeeById(@RequestBody Map<String,Object> updates, @PathVariable Long employeeId){
         return employeeService.updatePartialEmployeeByID(employeeId, updates);
     }
 

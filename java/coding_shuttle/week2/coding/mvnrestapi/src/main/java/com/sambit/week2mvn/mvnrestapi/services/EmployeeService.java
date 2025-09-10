@@ -85,6 +85,8 @@ public class EmployeeService {
             ReflectionUtils.setField(fieldToBeUpdated,employeeEntity,value);
         });
 
+        return modelMapper.map(employeeRepository.save(employeeEntity),EmployeeDTO.class);
+
 
 
     }
