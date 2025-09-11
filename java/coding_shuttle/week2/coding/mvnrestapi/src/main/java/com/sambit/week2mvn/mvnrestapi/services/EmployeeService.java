@@ -11,6 +11,7 @@ import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,10 +27,13 @@ public class EmployeeService {
         this.modelMapper = modelMapper;
     }
 
-    public EmployeeDTO getEmployeeById(Long id) {
-        EmployeeEntity  employeeEntity =  employeeRepository.findById(id).orElse(null);
+    public Optional<EmployeeDTO>  getEmployeeById(Long id) {
+//       Optional<EmployeeEntity>   employeeEntity =  employeeRepository.findById(id);
+//
+//       // return modelMapper.map(employeeEntity, EmployeeDTO.class);
+//        return employeeEntity.map( employeeEntity1 -> modelMapper.map( employeeEntity1, EmployeeDTO.class));
 
-        return modelMapper.map(employeeEntity, EmployeeDTO.class);
+        return employeeRepository.findById(id).map( employeeEntity1 -> modelMapper.map( employeeEntity1, EmployeeDTO.class));
     }
 
     public List<EmployeeDTO> getAllEmployees() {

@@ -3,11 +3,13 @@ package com.sambit.week2mvn.mvnrestapi.controllers;
 import com.sambit.week2mvn.mvnrestapi.dto.EmployeeDTO;
 import com.sambit.week2mvn.mvnrestapi.entities.EmployeeEntity;
 import com.sambit.week2mvn.mvnrestapi.services.EmployeeService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -28,15 +30,23 @@ public class EmployeeController {
     public String getMyMessage(){
         return " Message : Hi , From Employee Controller!!";
     }
+
+
     @GetMapping(path="/{employeeId}")
-    public EmployeeDTO getEmployeeById(@PathVariable(name="employeeId") Long id ){
-        return employeeService.getEmployeeById(id);
+    public ResponseEntity<EmployeeDTO>  getEmployeeById(@PathVariable(name="employeeId") Long id ){
+        Optional <EmployeeDTO> employeeDTO =  employeeService.getEmployeeById(id);
+//        if(employeeDTO == null) { return ResponseEntity.notFound().build(); }
+//        return ResponseEntity.ok(employeeDTO);
+
+        return  employeeDTO.map(employeeDTO1 -> ResponseEntity.ok(employeeDTO1)).
+                    orElse(ResponseEntity.notFound().build());
+
     }
 
     @GetMapping
-    public List<EmployeeDTO> getAllEmployees(@RequestParam(required=false , name = "inputAge") Integer age, @RequestParam(required=false) String  sortBy){
+    public ResponseEntity<List<EmployeeDTO>> getAllEmployees(@RequestParam(required=false , name = "inputAge") Integer age, @RequestParam(required=false) String  sortBy){
 
-        return employeeService.getAllEmployees();
+        return ResponseEntity.ok(employeeService.getAllEmployees()) ;
     }
 
     @PostMapping
