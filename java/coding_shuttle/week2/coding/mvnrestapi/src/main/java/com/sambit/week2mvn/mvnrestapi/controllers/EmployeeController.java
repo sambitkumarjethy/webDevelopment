@@ -3,6 +3,7 @@ package com.sambit.week2mvn.mvnrestapi.controllers;
 import com.sambit.week2mvn.mvnrestapi.dto.EmployeeDTO;
 import com.sambit.week2mvn.mvnrestapi.entities.EmployeeEntity;
 import com.sambit.week2mvn.mvnrestapi.services.EmployeeService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,25 +51,35 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public EmployeeDTO createNewEmployee(@RequestBody EmployeeDTO inputEmployee){
+    public ResponseEntity<EmployeeDTO> createNewEmployee(@RequestBody EmployeeDTO inputEmployee){
 
-        return employeeService.createEmployee(inputEmployee);
+        EmployeeDTO savedEmployee = employeeService.createEmployee(inputEmployee);
+        return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
     }
 
     @PutMapping(path="/{employeeId}")
-    public EmployeeDTO updateEmployeeId( @RequestBody EmployeeDTO employeeDTO, @PathVariable Long employeeId)
+    public ResponseEntity<EmployeeDTO> updateEmployeeId( @RequestBody EmployeeDTO employeeDTO, @PathVariable Long employeeId)
     {
-        return employeeService.updateEmpleeById(employeeId, employeeDTO);
+        return ResponseEntity.ok(employeeService.updateEmpleeById(employeeId, employeeDTO));
     }
 
     @DeleteMapping(path="/{employeeId}")
-    public boolean deleteEmployeeId( @PathVariable Long employeeId){
-       return employeeService.deleteEmployeeById(employeeId);
+    public ResponseEntity<Boolean> deleteEmployeeId( @PathVariable Long employeeId){
+       boolean goDeleted = employeeService.deleteEmployeeById(employeeId);
+       if(goDeleted){
+           return ResponseEntity.ok(true);
+       }else{
+           return ResponseEntity.notFound().build();
+       }
     }
 
     @PatchMapping(path="/{employeeId}")
-    public EmployeeDTO updatePartialEmployeeById(@RequestBody Map<String,Object> updates, @PathVariable Long employeeId){
-        return employeeService.updatePartialEmployeeByID(employeeId, updates);
+    public ResponseEntity<EmployeeDTO> updatePartialEmployeeById(@RequestBody Map<String,Object> updates, @PathVariable Long employeeId){
+        EmployeeDTO employeeDTO =  employeeService.updatePartialEmployeeByID(employeeId, updates);
+        if(employeeDTO == null){
+            return ResponseEntity.notFound().build();
+        }
+        return   ResponseEntity.ok(employeeDTO);
     }
 
 
