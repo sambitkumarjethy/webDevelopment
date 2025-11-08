@@ -32,8 +32,19 @@ public class EmployeeDTO {
     @Pattern(regexp = "^(ADMIN|USER)$" ,message = "Role of employee can be USER or ADMIN")
     private String role; // ADMIN USER
 
+    @NotNull(message = "Salary of employee should be a valid Positive number")
+    @Positive(message = "Salary of Employee Should be Positive")
 
+    @Digits(integer = 6, fraction = 2 , message = "The Salary can be in the form xxxxxx.yy")
+    @DecimalMin(value = "10000.00")
+    @DecimalMax(value = "999999.99")
+
+    private  Double salary;
+
+    @PastOrPresent(message="Dote of Joing of Employee cannot be in future")
     private LocalDate dateOfJoining  = LocalDate.now();
+
+    @AssertTrue(message = "Employee should be Active")
     @JsonProperty("isActive")
     private Boolean isActive = true;
 
