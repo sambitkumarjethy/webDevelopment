@@ -1,6 +1,7 @@
 package com.sambit.week2mvn.mvnrestapi.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sambit.week2mvn.mvnrestapi.annotations.EmployeeRoleValidation;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
@@ -29,7 +30,9 @@ public class EmployeeDTO {
 
     @NotNull(message = "Required field in Employee: Role")
     @NotBlank(message = "Role of the employee cannot be blank")
-    @Pattern(regexp = "^(ADMIN|USER)$" ,message = "Role of employee can be USER or ADMIN")
+
+  //  @Pattern(regexp = "^(ADMIN|USER)$" ,message = "Role of employee can be USER or ADMIN")
+    @EmployeeRoleValidation
     private String role; // ADMIN USER
 
     @NotNull(message = "Salary of employee should be a valid Positive number")
