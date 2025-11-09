@@ -2,17 +2,16 @@ package com.sambit.week2mvn.mvnrestapi.controllers;
 
 import com.sambit.week2mvn.mvnrestapi.dto.EmployeeDTO;
 import com.sambit.week2mvn.mvnrestapi.entities.EmployeeEntity;
+import com.sambit.week2mvn.mvnrestapi.exceptions.ResourceNotFoundException;
 import com.sambit.week2mvn.mvnrestapi.services.EmployeeService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 @RequestMapping(path = "/employees")
@@ -40,8 +39,11 @@ public class EmployeeController {
         //  if(employeeDTO == null) { return ResponseEntity.notFound().build(); }
         //  return ResponseEntity.ok(employeeDTO);
 
+//        return  employeeDTO.map(employeeDTO1 -> ResponseEntity.ok(employeeDTO1)).
+//                    orElse(ResponseEntity.notFound().build());
+
         return  employeeDTO.map(employeeDTO1 -> ResponseEntity.ok(employeeDTO1)).
-                    orElse(ResponseEntity.notFound().build());
+                orElseThrow(() -> new ResourceNotFoundException("Employee not found"));
 
     }
 
