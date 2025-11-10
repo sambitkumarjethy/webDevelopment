@@ -2,6 +2,7 @@ package com.sambit.week2mvn.mvnrestapi.services;
 
 import com.sambit.week2mvn.mvnrestapi.dto.EmployeeDTO;
 import com.sambit.week2mvn.mvnrestapi.entities.EmployeeEntity;
+import com.sambit.week2mvn.mvnrestapi.exceptions.ResourceNotFoundException;
 import com.sambit.week2mvn.mvnrestapi.repositories.EmployeeRepository;
 import org.apache.el.util.ReflectionUtil;
 import org.modelmapper.ModelMapper;
@@ -57,6 +58,9 @@ public class EmployeeService {
 
 
     public EmployeeDTO updateEmpleeById(Long employeeId, EmployeeDTO employeeDTO) {
+
+        boolean exists =  isExistsByEmployeeId(employeeId);
+        if(!exists) throw new ResourceNotFoundException("Employee not found with id: "+employeeId);
 
         EmployeeEntity employeeEntity = modelMapper.map(employeeDTO, EmployeeEntity.class);
         employeeEntity.setId(employeeId);
