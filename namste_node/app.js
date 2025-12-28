@@ -1,5 +1,5 @@
 require("./xyz");
-const { calculateSum } = require("./sum");
+const { x, calculateSum } = require("./sum");
 var namex = "sambit";
 var a = 20;
 var b = 30;
@@ -9,5 +9,6 @@ console.log({ namex, a, b }, a + b);
 // console.log(this); // empty object
 // console.log(globalThis);
 
-console.log(globalThis === global);
+// console.log(globalThis === global);
 calculateSum(1, 2);
+console.log(x);
