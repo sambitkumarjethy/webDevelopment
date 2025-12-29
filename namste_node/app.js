@@ -1,7 +1,10 @@
 require("./xyz");
 // import {x, calculateSum} from require("./sum");
-const { x, calculateSum } = require("./calculate/sum");
-const { calculateMultiply } = require("./calculate/multiply");
+// const { x, calculateSum } = require("./calculate/sum");
+// const { calculateMultiply } = require("./calculate/multiply");
+
+const { calculateSum, calculateMultiply } = require("./calculate");
+
 var namex = "sambit";
 var a = 20;
 var b = 30;
@@ -14,4 +17,4 @@ console.log({ namex, a, b }, a + b);
 // console.log(globalThis === global);
 calculateSum(1, 2);
 calculateMultiply(a, b);
-console.log(x);
+// console.log(x);
