@@ -1,5 +1,7 @@
-require("./xyz");
-const { x, calculateSum } = require("./sum");
+//require("./xyz");
+
+import { x, calculateSum } from "./sum.js";
+// const { x, calculateSum } = require("./sum");
 var namex = "sambit";
 var a = 20;
 var b = 30;
