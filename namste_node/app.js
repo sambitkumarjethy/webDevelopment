@@ -1,9 +1,13 @@
 require("./xyz");
+const util = require("node:util");
 // import {x, calculateSum} from require("./sum");
 // const { x, calculateSum } = require("./calculate/sum");
 // const { calculateMultiply } = require("./calculate/multiply");
 
 const { calculateSum, calculateMultiply } = require("./calculate");
+const data = require("./data.json");
+console.log(data);
+console.log(util);
 
 var namex = "sambit";
 var a = 20;
