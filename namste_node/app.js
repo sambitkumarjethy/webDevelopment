@@ -1,4 +1,3 @@
-require("./xyz");
 const util = require("node:util");
 // import {x, calculateSum} from require("./sum");
 // const { x, calculateSum } = require("./calculate/sum");
