@@ -22,6 +22,7 @@ ANS - nodejs passes module as parameter to IIFE
   2. Loading the module
         -> File content is loaded according to file type
   3. Wraps inside IIFE
+      -> compile step
   4. Code Evaluation
       -> require , module.exports returned
   5. Caching
@@ -30,4 +31,15 @@ ANS - nodejs passes module as parameter to IIFE
 
 #libUV
  -> All the important function of js is present in it. (ex- async I/o)
+
+ -> Going through the gitrepo of Nodejs
+-> wrapper function
+  let wrap = function(script) { // eslint-disable-line func-style
+    return Module.wrapper[0] + script + Module.wrapper[1];
+  };
+
+  const wrapper = [
+    '(function (exports, require, module, __filename, __dirname) { ',
+    '\n});',
+  ];
         
