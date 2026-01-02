@@ -1,0 +1,6 @@
+-> Enent-driven architecture and capable of async I/O  
+
+JS -> syncronous single threaded language
+-> Js is single threaded -> line by line execution
+-> to do multiple operation -
+-> syncronous vs async flow
