@@ -4,3 +4,8 @@ JS -> syncronous single threaded language
 -> Js is single threaded -> line by line execution
 -> to do multiple operation -
 -> syncronous vs async flow
+-> async no blocking and sync is blocking IO
+-> node does Async opertation using super power.
+
+
+# V8 engine in js ( call stack,memory heap, Garbage collector)
