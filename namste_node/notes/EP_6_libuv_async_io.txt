@@ -9,3 +9,30 @@ JS -> syncronous single threaded language
 
 
 # V8 engine in js ( call stack,memory heap, Garbage collector)
+-> JS code exicute code in mili seconds
+-> to execute file,db,www(http), timmer  you need super power comes from node
+-> settimeout is used to make wait js to execute code 
+-> Js doesnot have concept of timer
+-> The super power comes from node which is LIBuv (SUPER HERO).
+-> v8 engine ofloads async task to LIBuv
+
+flow
+v8 engine -> libuv ->OS 
+=> Node js is combination of V8 and libuv
+
+=> using libuv async IO made simple
+=> libuv is writen in C language
+=> libuv manages thread poll, event loop, IO call back, set timmer ,file  sysytem.
+
+How code flows in JS v8 engine
+===================================
+=> when a code is executed it goes to call stack and creates global execution context
+=> When GEC  ( Global execution context )  gets a API call .. GEC calls libuv as ask to manage it and get the response
+=>  When GEC gets a Timmer (setTtimeout) .. GEC calls libuv as ask to manage it and get the response
+=> When GEC gets a File .. GEC calls libuv as ask to manage it and get the response
+=> When GEC gets a function  .. It manages itself
+=> When FEC ( functional execution context ) gets a function call  .. It manages itself
+
+
+======> nodejs can do asyncronous IO ( Input Output) . It is also called non blocking IO using V* engine.
+=> v8 engine call stack is a single thread
