@@ -1,12 +1,12 @@
-import nodeMailer from "nodeMailer";
+import nodeMailer from "nodemailer";
 
 export const sendEmail = async ({ email, subject, message }) => {
-  const transporter = nodemailer.createTransport({
+  const transporter = nodeMailer.createTransport({
     host: process.env.SMTP_HOST,
     service: process.env.SMTP_PORT,
     auth: {
       user: process.env.SMTP_MAIL,
-      password: process.env.SMTP_PASSWORD,
+      pass: process.env.SMTP_PASSWORD,
     },
   });
 
@@ -17,5 +17,5 @@ export const sendEmail = async ({ email, subject, message }) => {
     html: message,
   };
 
-  await transporter.sendEmail(mailOptions);
+  await transporter.sendMail(mailOptions);
 };
