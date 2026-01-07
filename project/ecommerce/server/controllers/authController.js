@@ -3,6 +3,7 @@ import { catchAsyncErrors } from "../middlewares/catchAsyncError.js";
 import database from "../database/db.js";
 import bcrypt from "bcrypt";
 import { sendToken } from "../utils/jwtToken.js";
+import { generateResetPasswordToken } from "../utils/generateResetPasswordToken.js";
 
 export const register = catchAsyncErrors(async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -65,4 +66,23 @@ export const logout = catchAsyncErrors(async (req, res, next) => {
       success: true,
       message: "Loggedout successfully.",
     });
+});
+
+export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
+  const { email } = req.body;
+  const { frontendUrl } = req.query;
+
+  let userResult = await datanase.query(
+    `SELECT * FROM users WHERE email = $1`,
+    [email]
+  );
+
+  if (userResult.rows.length === 0) {
+    return next(new ErrorHandler("Invalid Email.", 404));
+  }
+
+  const user = userResult.rows[0];
+
+  const { hashedToken, resetPasswordExpireTime, resetToken } =
+    generateResetPasswordToken();
 });
