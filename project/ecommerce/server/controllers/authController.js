@@ -4,6 +4,8 @@ import database from "../database/db.js";
 import bcrypt from "bcrypt";
 import { sendToken } from "../utils/jwtToken.js";
 import { generateResetPasswordToken } from "../utils/generateResetPasswordToken.js";
+import { sendEmail } from "../utils/sendEmail.js";
+import { generateEmailTemplate } from "../utils/generateForgotPasswordEmailTemplate.js";
 
 export const register = catchAsyncErrors(async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -72,7 +74,7 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
   const { email } = req.body;
   const { frontendUrl } = req.query;
 
-  let userResult = await datanase.query(
+  let userResult = await database.query(
     `SELECT * FROM users WHERE email = $1`,
     [email]
   );
@@ -85,4 +87,41 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
   const { hashedToken, resetPasswordExpireTime, resetToken } =
     generateResetPasswordToken();
+
+  await database.query(
+    `UPDATE users SET 
+                          reset_password_token = $1, 
+                          reset_password_expire = to_timestamp($2) 
+                          WHERE
+                          email =$3`,
+    [hashedToken, resetPasswordExpireTime / 1000, email]
+  );
+
+  const resetPasswordURl = `${frontendUrl}/password/reset/${resetToken}`;
+
+  const message = generateEmailTemplate(resetPasswordURl);
+
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: "Ecommerce Password recovery",
+      message,
+    });
+    res.status(200).json({
+      success: true,
+      message: `Email sent to ${user.email} successfuly.`,
+    });
+  } catch (error) {
+    console.log(error);
+    await database.query(
+      `UPDATE users SET 
+                          reset_password_token = $1, 
+                          reset_password_expire = NULL
+                          WHERE
+                          email =$1`,
+      [email]
+    );
+
+    return next(new ErrorHandler("Email could not be sent.", 500));
+  }
 });
