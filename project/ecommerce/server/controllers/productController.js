@@ -53,3 +53,36 @@ export const createProduct = catchAsyncErrors(async (req, res, next) => {
     });
   }
 });
+
+export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
+  const {
+    availability,
+    price,
+    category,
+    ratings,
+    serachvalue,
+    page: req_page,
+  } = req.query;
+
+  const page = parseInt(req_page) || 1;
+  const limit = 10;
+  const offset = (page - 1) * limit;
+
+  const conditions = [];
+  let values = [];
+  let index = 1;
+
+  let paginationPlaceholders = {};
+
+  if (availability === "in-stock") {
+    conditions.push(` stock > 5 `);
+  } else if (availability == "limited") {
+    conditions.push(` stock > 0 AND stock <= 5 `);
+  } else if (availability == "out-of-stock") {
+    conditions.push(` stock = 0`);
+  }
+
+  if (price) {
+    const [minPrice, maxPrice] = price.split("-");
+  }
+});
