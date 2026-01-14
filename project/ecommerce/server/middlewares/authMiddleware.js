@@ -4,6 +4,7 @@ import ErrorHandler from "./errormiddleware.js";
 import database from "../database/db.js";
 
 export const isAuthenticated = catchAsyncErrors(async (req, res, next) => {
+  console.log("Cookies:", req.cookies);
   const { token } = req.cookies;
   if (!token) {
     return next(new ErrorHandler("Please login to access this resource.", 400));
