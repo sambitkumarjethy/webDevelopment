@@ -95,7 +95,7 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
   //Filter products by category
   if (category) {
     conditions.push(` category ILIKE $${index}`);
-    values.push(`%$${category}%`);
+    values.push(`%${category}%`);
     index++;
   }
 
@@ -139,10 +139,44 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
                   LEFT JOIN reviews r ON p.id = r.id 
                   ${whereClause}
                   Group By p.id
-                  ORDER BY p.created_at = DESC
+                  ORDER BY p.created_at  DESC
                   LIMIT ${paginationPlaceholders.limit}
                   OFFSET  ${paginationPlaceholders.offset}
                   `;
-
+  console.log({ whereClause, query });
   const result = await database.query(query, values);
+
+  // QUERY FOR FETCHING NEW PRODUCTS
+  const newProductsQuery = `
+      SELECT p.*,
+      COUNT(r.id) AS review_count
+      FROM products p
+      LEFT JOIN reviews r ON p.id = r.product_id
+      WHERE p.created_at >=NOW() - INTERVAL '30 days'
+      GROUP BY p.id
+      ORDER BY p.created_at DESC
+      LIMIT 8
+    `;
+  const newProductsresult = await database.query(newProductsQuery);
+
+  // QUERY FOR FETCHING TOP RATED PRODUCTS ( rating > 4.5)
+  const topRatedQuery = `
+      SELECT p.*,
+      COUNT(r.id) AS review_count
+      FROM products p
+      LEFT JOIN reviews r ON p.id = r.product_id
+      WHERE p.ratings > 4.5
+      GROUP BY p.id
+      ORDER BY p.created_at DESC
+      LIMIT 8
+    `;
+  const topRatedsresult = await database.query(topRatedQuery);
+
+  res.status(200).json({
+    success: true,
+    products: result.rows,
+    totalProducts,
+    newProducts: newProductsresult.rows,
+    topRatedProducts: topRatedsresult.rows,
+  });
 });
