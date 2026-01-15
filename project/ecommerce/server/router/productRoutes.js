@@ -4,7 +4,7 @@ import {
   fetchAllProducts,
   updateProduct,
   deleteProduct,
-  //   fetchSingleProduct,
+  fetchSingleProduct,
   //   postProductReview,
   //   deleteReview,
   //   fetchAIFilteredProducts,
@@ -23,7 +23,7 @@ router.post(
   createProduct
 );
 router.get("/", fetchAllProducts);
-// router.get("/singleProduct/:productId", fetchSingleProduct);
+router.get("/singleProduct/:productId", fetchSingleProduct);
 // router.put("/post-new/review/:productId", isAuthenticated, postProductReview);
 // router.delete("/delete/review/:productId", isAuthenticated, deleteReview);
 router.put(
