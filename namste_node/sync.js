@@ -1,5 +1,6 @@
-const fs = require("fs");
-const https = require("https");
+const fs = require("node:fs");
+const https = require("node:https");
+const crypto = require("node:crypto");
 console.log("Hello Sambit");
 
 var a = 123456;
@@ -43,6 +44,31 @@ setTimeout(() => {
 fs.readFile("./file.txt", "utf-8", (err, data) => {
   console.log(`File data : ${data}`);
 });
+
+// Password Base Key Derivative Function
+// Synchronous function will block the main thread - DONT USE IT
+const syncCryptokey = crypto.pbkdf2Sync(
+  "password", // password
+  "salt", // salt
+  5000000, // iterations
+  50, // key length in bytes
+  "sha512"
+);
+console.log({ syncCryptokey });
+
+// ASYNC Function
+crypto.pbkdf2(
+  "password", // password
+  "salt", // salt
+  500000, // iterations
+  50, // key length in bytes
+  "sha512", // digest algorithm
+  (err, derivedKey) => {
+    if (err) throw err;
+
+    console.log("Derived key:", derivedKey.toString("hex"));
+  }
+);
 
 function multiply(x, y) {
   const result = a * b;
