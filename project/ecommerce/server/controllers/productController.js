@@ -9,7 +9,7 @@ export const createProduct = catchAsyncErrors(async (req, res, next) => {
 
   if (!name || !description || !price || !category || !stock) {
     return next(
-      new ErrorHandler("Please Provide complete product deatils.", 400)
+      new ErrorHandler("Please Provide complete product deatils.", 400),
     );
   }
 
@@ -43,7 +43,7 @@ export const createProduct = catchAsyncErrors(async (req, res, next) => {
         stock,
         JSON.stringify(uploadedImages),
         created_by,
-      ]
+      ],
     );
 
     res.status(201).json({
@@ -120,7 +120,7 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
   //GET count of filter products
   const totalproductsResult = await database.query(
     `SELECT COUNT(*) FROM products p ${whereClause}`,
-    values
+    values,
   );
 
   const totalProducts = parseInt(totalproductsResult.rows[0].count);
@@ -187,7 +187,7 @@ export const updateProduct = catchAsyncErrors(async (req, res, next) => {
 
   if (!name || !description || !price || !category || !stock) {
     return next(
-      new ErrorHandler("Please Provide complete product deatils.", 400)
+      new ErrorHandler("Please Provide complete product deatils.", 400),
     );
   }
 
@@ -201,7 +201,7 @@ export const updateProduct = catchAsyncErrors(async (req, res, next) => {
 
   const result = await database.query(
     `UPDATE  products SET name= $1 , description= $2, price= $3, category= $4, stock= $5 WHERE id = $6 RETURNING *`,
-    [name, description, price, category, stock, productId]
+    [name, description, price, category, stock, productId],
   );
   res.status(200).json({
     success: true,
@@ -224,7 +224,7 @@ export const deleteProduct = catchAsyncErrors(async (req, res, next) => {
   const images = product.rows[0].images;
   const deleteResult = await database.query(
     "DELETE FROM products WHERE id = $1 RETURNING *",
-    [productId]
+    [productId],
   );
 
   if (deleteResult.rows.length === 0) {
@@ -267,12 +267,88 @@ export const fetchSingleProduct = catchAsyncErrors(async (req, res, next) => {
          LEFT JOIN users u ON r.user_id = u.id
          WHERE p.id  = $1
          GROUP BY p.id`,
-    [productId]
+    [productId],
   );
 
   res.status(200).json({
     success: true,
     message: "Product fetched successfully.",
     product: result.rows[0],
+  });
+});
+
+export const postProductReview = catchAsyncErrors(async (req, res, next) => {
+  const { productId } = req.params;
+  // const { rating, comment } = req.body;
+  const { rating, comment } = req.body || {};
+  if (!rating || !comment) {
+    return next(new ErrorHandler("Please provide rating and comment.", 400));
+  }
+
+  const purchaseCheckQuery = ` SELECT oi.product_id 
+      FROM order_items oi
+      JOIN orders o ON  oi.order_id  = o.id
+      JOIN payments p ON p.order_id = o.id
+      WHERE o.buyer_id = $1
+      AND oi.product_id = $2
+      AND p.payment_status = 'PAID'
+      LIMIT 1
+      `;
+
+  const { rows } = await database.query(purchaseCheckQuery, [
+    req.user.id,
+    productId,
+  ]);
+
+  if (rows.length === 0) {
+    return res.status(403).json({
+      success: false,
+      message: "You can review a product you've purchased.",
+    });
+  }
+
+  const product = await database.query(`SELECT * FROM products WHERE id = $1`, [
+    productId,
+  ]);
+
+  if (product.rows.length === 0) {
+    return next(new ErrorHandler("Product not found", 404));
+  }
+
+  const isAlreadyReviewed = await database.query(
+    ` SELECT * FROM reviews WHERE product.id = $1 AND  user_id = $2`,
+    [productId, req.user.id],
+  );
+  let review;
+  if (isAlreadyReviewed.rows.length > 0) {
+    review = await database.query(
+      `UPDATE  reviews SET rating = $1 , comment = $2 WHERE product_id = $3 AND user_id = $4 RETURNING *`,
+      [rating, comment, productId, req.user.id],
+    );
+  } else {
+    review = await database.query(
+      `INSERT INTO reviews (product_id, user_id ,  rating, comment) VALUES ($1, $2, $3, $4)`,
+      [productId, req.user.id, rating, comment],
+    );
+  }
+
+  const allReviews = await database.query(
+    `SELECT AVG(rating) AS avg_rating FROM reviews WHERE product_id = $1`,
+    [productId],
+  );
+
+  const newAvgRating = allReviews.rows[0].avg_rating;
+
+  const updatedProduct = await database.query(
+    `
+        UPDATE products SET ratings = $1 WHERE id = $2 returninG *
+    `,
+    [newAvgRating, productId],
+  );
+
+  res.status(200).json({
+    success: true,
+    message: review.rows[0],
+    product: updatedProduct.rows[0],
   });
 });
