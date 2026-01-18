@@ -341,7 +341,7 @@ export const postProductReview = catchAsyncErrors(async (req, res, next) => {
 
   const updatedProduct = await database.query(
     `
-        UPDATE products SET ratings = $1 WHERE id = $2 returninG *
+        UPDATE products SET ratings = $1 WHERE id = $2 returning *
     `,
     [newAvgRating, productId],
   );
@@ -349,6 +349,40 @@ export const postProductReview = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     success: true,
     message: review.rows[0],
+    product: updatedProduct.rows[0],
+  });
+});
+
+export const deleteReview = catchAsyncErrors(async (req, res, next) => {
+  const { productId } = req.params;
+
+  const review = await database.query(
+    "DELETE FROM reviews WHERE  product_id = $1 AND user_id = $2 returning *",
+    [productId, req.user.id],
+  );
+
+  if (review.rows.length === 0) {
+    return next(new ErrorHandler("Review not found.", 404));
+  }
+
+  const allReviews = await database.query(
+    `SELECT AVG(rating) AS avg_rating FROM reviews WHERE product_id = $1`,
+    [productId],
+  );
+
+  const newAvgRating = allReviews.rows[0].avg_rating;
+
+  const updatedProduct = await database.query(
+    `
+        UPDATE products SET ratings = $1 WHERE id = $2 returning *
+    `,
+    [newAvgRating, productId],
+  );
+
+  res.status(200).json({
+    success: true,
+    message: "Your review has been deleted",
+    review: review.rows[0],
     product: updatedProduct.rows[0],
   });
 });
