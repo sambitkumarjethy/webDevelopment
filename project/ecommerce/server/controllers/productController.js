@@ -506,18 +506,24 @@ export const fetchAIFilteredProducts = catchAsyncErrors(
       });
     }
 
-    // STEP 2: AI FILTERING
-    const { success, products } = await getAIRecommendation(
-      req,
-      res,
-      userPrompt,
-      filteredProducts,
-    );
-
     res.status(200).json({
-      success: success,
-      message: "AI filtered products.",
-      products,
+      success: true,
+      message: "Genral filtered products.",
+      products: filteredProducts,
     });
+
+    // STEP 2: AI FILTERING
+    // const { success, products } = await getAIRecommendation(
+    //   req,
+    //   res,
+    //   userPrompt,
+    //   filteredProducts,
+    // );
+
+    // res.status(200).json({
+    //   success: success,
+    //   message: "AI filtered products.",
+    //   products,
+    // });
   },
 );
