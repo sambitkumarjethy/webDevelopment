@@ -1,0 +1,23 @@
+Steps V8 engine does when do is Executed
+______________________________________
+
+A. PARSING
+    1. Lexical Analysis ( also known as tokanization) - code is broken in to tokens
+    2. syntax Analysis ( also known as parsing) - Token is converted to AST ( Abstract Syntax tree)
+        - https://astexplorer.net/ ( visit site for AST tree view)
+    3. AST is forworded to INTERPRETTER 
+            There aare 2 types language
+                a. Interpreted language 
+                    --> It reads the code line by line
+                    --> Fast initial execution
+                    --> Interpreter interprites the language and goes line by line
+                    
+                b.Compiled 
+                    --> First High level code is conveted to machine code
+                    --> Initially Heavy but executed fast
+                    --> compilter compiles the code
+                
+
+    ### IMPORTANT - Java script uses both Interpreter and compilter to execute code it has JIT ( Just in time) compilter
+
+    
