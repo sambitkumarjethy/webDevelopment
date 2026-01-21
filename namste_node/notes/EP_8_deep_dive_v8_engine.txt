@@ -32,9 +32,22 @@ A. PARSING
 
 
 ================<<<<<<<< EXECUTION FLOW ALSO Known as OPTIMIZATION  >>>>>>>==============================
-AST ====> IGNITION INTERPRETTER ====> BYTE CODE =====> EXECUTION
-                ↓                                           ⇑
-         TORBO FAN compiler                                 ⇑
-                ↓                                           ⇑
-        OPTIMIZED MACHINE CODE  ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹  ⇑
+AST ====> IGNITION INTERPRETTER ====> BYTE CODE =============> EXECUTION
+                ↓                                                    ⇑
+            TORBO FAN compiler   ⟹ ⟹ OPTIMIZED/                    ⇑
+                ↓                   DEOPTIMIZED MACHINE CODE         ⇑
+                ↓                        ( and send back to          ⇑
+                ↓                        IGNITION INTERPRETTER  )    ⇑
+                ↓                                                    ⇑
+                ↓                                                    ⇑
+                ↓                                                    ⇑                                                     
+        OPTIMIZED MACHINE CODE  ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹  ⇑
+
+Garbage Collection
+______________________________________
+It is a parallel Collection. It happens simoltatiously.
+-> ORICONO and OIL PAN,  Scavenger, Scavenger is the Name of Garbage collector in V8 engine
+-> Inline caching
+-> Earlier crank shaft compiler
+-> Java script is intime complie language
     
