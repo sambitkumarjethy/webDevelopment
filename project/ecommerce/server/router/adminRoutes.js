@@ -1,5 +1,9 @@
 import express from "express";
-import { getAllUsers } from "../controllers/adminController.js";
+import {
+  getAllUsers,
+  deleteUser,
+  dashboardStats,
+} from "../controllers/adminController.js";
 import {
   authorizedRoles,
   isAuthenticated,
@@ -12,5 +16,18 @@ router.get(
   authorizedRoles("Admin"),
   getAllUsers,
 ); // TO BE SHOWN IN DASHBOARD
+
+router.delete(
+  "/delte/:id",
+  isAuthenticated,
+  authorizedRoles("Admin"),
+  deleteUser,
+);
+router.get(
+  "/fetch/dashboard-stats",
+  isAuthenticated,
+  authorizedRoles("Admin"),
+  dashboardStats,
+);
 
 export default router;
