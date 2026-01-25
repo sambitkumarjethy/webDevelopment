@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="01563ac9-0b67-459a-8dcf-aaef1294a522" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../basic_java/basic" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes/note_1.text" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hello.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hello.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../namste_react/netflix-gpt/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../namste_react/netflix-gpt/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../namste_react/netflix-gpt/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../namste_react/netflix-gpt/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/app/(auth)/layout.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/app/(auth)/sign-in/[[...sign-in]]/page.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/app/(auth)/sign-up/[[...sign-up]]/page.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/app/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/app/globals.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/app/layout.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/app/page.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/components.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/components/header.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/components/ui/badge.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/components/ui/button.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/components/ui/calendar.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/components/ui/card.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/components/ui/checkbox.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/components/ui/drawer.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/components/ui/dropdown-menu.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/components/ui/input.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/components/ui/popover.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/components/ui/progress.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/components/ui/select.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/components/ui/switch.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/components/ui/table.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/components/ui/tooltip.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/eslint.config.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/jsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/lib/utils.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/middleware.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/next.config.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/postcss.config.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/public/banner.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/public/logo-sm.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../next.js/welth/public/logo.png" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2zlPgZ6V3TTuScQcNtUxPFnhQuz" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/workSpace/webDevelopment_2025/java/springBootRestAPIProject"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="01563ac9-0b67-459a-8dcf-aaef1294a522" name="Changes" comment="" />
+      <created>1752302798979</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1752302798979</updated>
+    </task>
+    <servers />
+  </component>
+</project>
