@@ -17,25 +17,25 @@ export const register = catchAsyncErrors(async (req, res, next) => {
 
   if (password.length < 8 || password.length > 16) {
     return next(
-      new ErrorHandler("Password must be between 8 or 16 cahrectors.", 400)
+      new ErrorHandler("Password must be between 8 or 16 cahrectors.", 400),
     );
   }
 
   const isAlreayRegisted = await database.query(
     `SELECT * FROM users where email = $1 `,
-    [email]
+    [email],
   );
 
   if (isAlreayRegisted.rows.length > 0) {
     return next(
-      new ErrorHandler("User already registered with this email", 400)
+      new ErrorHandler("User already registered with this email", 400),
     );
   }
   const hashedPassword = await bcrypt.hash(password, 10);
 
   const user = await database.query(
     ` INSERT INTO users (name,email,password) values($1, $2,$3) RETURNING *`,
-    [name, email, hashedPassword]
+    [name, email, hashedPassword],
   );
   sendToken(user.rows[0], 201, "User Registered successfuly", res);
 });
@@ -85,7 +85,7 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
   let userResult = await database.query(
     `SELECT * FROM users WHERE email = $1`,
-    [email]
+    [email],
   );
 
   if (userResult.rows.length === 0) {
@@ -103,7 +103,7 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
                           reset_password_expire = to_timestamp($2) 
                           WHERE
                           email =$3`,
-    [hashedToken, resetPasswordExpireTime / 1000, email]
+    [hashedToken, resetPasswordExpireTime / 1000, email],
   );
 
   const resetPasswordURl = `${frontendUrl}/password/reset/${resetToken}`;
@@ -128,7 +128,7 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
                           reset_password_expire = NULL
                           WHERE
                           email =$1`,
-      [email]
+      [email],
     );
 
     return next(new ErrorHandler("Email could not be sent.", 500));
@@ -145,7 +145,7 @@ export const resetPassword = catchAsyncErrors(async (req, res, next) => {
 
   const user = await database.query(
     "SELECT * FROM users WHERE reset_password_token  = $1 AND reset_password_expire > NOW()",
-    [reset_password_token]
+    [reset_password_token],
   );
 
   if (user.rows.length === 0) {
@@ -162,7 +162,7 @@ export const resetPassword = catchAsyncErrors(async (req, res, next) => {
     confirmpassword?.length > 16
   ) {
     return next(
-      new ErrorHandler("Password must be between 8 or 16 cahrectors.", 400)
+      new ErrorHandler("Password must be between 8 or 16 cahrectors.", 400),
     );
   }
 
@@ -174,7 +174,7 @@ export const resetPassword = catchAsyncErrors(async (req, res, next) => {
     reset_password_expire = NULL
     WHERE id= $2 
     RETURNING *`,
-    [hashedPassword, user.rows[0].id]
+    [hashedPassword, user.rows[0].id],
   );
   sendToken(updatedUser.rows[0], 200, "Password Reset Successfully", res);
 });
@@ -186,7 +186,7 @@ export const updatePassword = catchAsyncErrors(async (req, res, next) => {
   }
   const isPasswordMatch = await bcrypt.compare(
     currentPassword,
-    req.user.password
+    req.user.password,
   );
 
   if (!isPasswordMatch) {
@@ -204,7 +204,7 @@ export const updatePassword = catchAsyncErrors(async (req, res, next) => {
     confirmNewPassword?.length > 16
   ) {
     return next(
-      new ErrorHandler("Password must be between 8 or 16 cahrectors.", 400)
+      new ErrorHandler("Password must be between 8 or 16 cahrectors.", 400),
     );
   }
 
@@ -242,7 +242,7 @@ export const updateProfile = catchAsyncErrors(async (req, res, next) => {
         folder: "Ecommerce_avatars",
         width: 150,
         crop: "scale",
-      }
+      },
     );
 
     avtarData = {
@@ -255,12 +255,12 @@ export const updateProfile = catchAsyncErrors(async (req, res, next) => {
   if (Object.keys(avtarData).length === 0) {
     user = await database.query(
       ` UPDATE users SET name = $1 , email = $2 WHERE id = $3 RETURNING *`,
-      [name, email, req.user.id]
+      [name, email, req.user.id],
     );
   } else {
     user = await database.query(
       ` UPDATE users SET name = $1 , email = $2, avatar = $3 WHERE id = $4 RETURNING *`,
-      [name, email, avtarData, req.user.id]
+      [name, email, avtarData, req.user.id],
     );
   }
 
