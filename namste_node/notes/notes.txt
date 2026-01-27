@@ -1,3 +1,8 @@
+Node js diagram
+______________________________________
+
+v8 engine + lib.uv + fs +http + crypto + other dedency library
+
 console.log("Console from xyz.js");
  All the code of module is wraped inside a function(IIFE)
 IIFE - Imediately invoked function Expression
