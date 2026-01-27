@@ -626,6 +626,42 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "ORDER ROUTES",
+      "item": [
+        {
+          "name": "PLACE NEW ORDER",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"full_name\": \"Manav Meheta\",\r\n    \"state\":\"Odisha\",\r\n    \"city\":\"cuttack\",\r\n    \"country\":\"India\",\r\n    \"address\":\"Manglabag cuttack\",\r\n    \"pincode\":\"753001\",\r\n    \"phone\":\"1234567890\",\r\n    \"ordeeredItems\":[\r\n        {\r\n            \"product\": {\r\n            \"id\":\"34056763-b533-44f4-aedd-12bc0679f3cb\",\r\n            \"images\":[\r\n                {\"url\":\"https://res.cloudinary.com/dq0gguz3k/image/upload/v1768144126/Ecommerce_Product_Iamge/elenswmbxmrmf2kc0bv6.png\"}\r\n            ],\r\n            \"quantity\":2\r\n            }\r\n        },\r\n         {\r\n            \"product\": {\r\n              \"id\":  \"34056763-b533-44f4-aedd-12bc0679f3ca\",\r\n            \"images\":[\r\n                {\"url\":\"https://res.cloudinary.com/dq0gguz3k/image/upload/v1768144126/Ecommerce_Product_Iamge/elenswmbxmrmf2kc0bv6.png\"}\r\n            ],\r\n            \"quantity\":2\r\n            }\r\n        }\r\n        \r\n        \r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/v1/order/new",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "v1",
+                "order",
+                "new"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ]
 }

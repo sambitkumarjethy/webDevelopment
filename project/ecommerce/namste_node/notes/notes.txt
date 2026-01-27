@@ -1,0 +1,48 @@
+console.log("Console from xyz.js");
+ All the code of module is wraped inside a function(IIFE)
+IIFE - Imediately invoked function Expression
+(function (module, require) {
+  // require(path);
+  // All code of module runs here
+})(); // Imedialty invoked function
+
+ #IIFE
+-> Immediately invoke the code
+-> It keeps variable and function prrivate/safe
+
+Q - HOW ARE VARABLES AND FUNCTION PRIVATE IN DIFFERENT MODULE ?
+ANS = IIFE AND require statement
+Q - how do you get the access to module.export
+ANS - nodejs passes module as parameter to IIFE
+
+# drequire(/path)
+5 Steps to run the code #require(/path)
+  1. Resolving the module
+      -> Checks whether it is a local/json/node internal module path
+  2. Loading the module
+        -> File content is loaded according to file type
+  3. Wraps inside IIFE
+      -> compile step
+  4. Code Evaluation
+      -> require , module.exports returned
+  5. Caching
+      -> then the module is cached
+
+
+#libUV
+ -> All the important function of js is present in it. (ex- async I/o)
+
+ -> Going through the gitrepo of Nodejs
+-> wrapper function
+  let wrap = function(script) { // eslint-disable-line func-style
+    return Module.wrapper[0] + script + Module.wrapper[1];
+  };
+
+  const wrapper = [
+    '(function (exports, require, module, __filename, __dirname) { ',
+    '\n});',
+  ];
+
+  => Still todos is in gitrepo
+  => Go through Node REPO
+        
