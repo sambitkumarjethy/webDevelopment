@@ -1,13 +1,14 @@
 import { Menu, User, ShoppingCart, Sun, Moon, Search } from "lucide-react";
 import { useTheme } from "../../contexts/ThemeContext";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleSidebar } from "../../store/slices/popupSlice";
+import { toggleSearchBar, toggleSidebar } from "../../store/slices/popupSlice";
 
 // const Navbar = () => {
 //   return <></>;
 // };
 
 const Navbar = () => {
+  const { theme, toggleTheme } = useTheme();
   const dispatch = useDispatch();
   const { cart } = useSelector((state) => state.cart);
 
@@ -33,7 +34,26 @@ const Navbar = () => {
           </div>
 
           {/* RIGHT side  ICONS*/}
-          <div className="flex items-center space-x-2">{/* THEME TOGGLE*/}</div>
+          <div className="flex items-center space-x-2">
+            {/* THEME TOGGLE*/}
+            <button
+              onClick={() => toggleTheme()}
+              className="p-2 rounded-lg hover:bg-secondary transition-colors "
+            >
+              {theme === "dark" ? (
+                <Sun className="w-5 h-5 text-foreground" />
+              ) : (
+                <Moon className="w-5 h-5 text-foreground" />
+              )}
+            </button>
+            {/* SEARCH OVERLAY*/}
+            <button
+              onClick={() => dispatch(toggleSearchBar())}
+              className="p-2 rounded-lg hover:bg-secondary transition-colors "
+            >
+              <Search className="w-5 h-5 text-foreground" />
+            </button>
+          </div>
         </div>
       </div>
     </nav>

@@ -25,35 +25,33 @@ import NotFound from "./pages/NotFound";
 
 const App = () => {
   return (
-    <>
-      <ThemeProvider>
-        <BrowserRouter>
-          <div className="min-h-screen bg-background">
-            <Navbar />
-            <Sidebar />
-            <SearchOverlay />
-            <CartSidebar />
-            <ProfilePanel />
-            <LoginModal />
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/password/reset/:token" element={<Index />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/product/:id" element={<ProductDetail />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/orders" element={<Orders />} />
-              <Route path="/payment" element={<Payment />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/faq" element={<FAQ />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-            <Footer />
-          </div>
-          <ToastContainer />
-        </BrowserRouter>
-      </ThemeProvider>
-    </>
+    <ThemeProvider>
+      <BrowserRouter>
+        <div className="min-h-screen bg-background">
+          <Navbar />
+          <Sidebar />
+          <SearchOverlay />
+          <CartSidebar />
+          <ProfilePanel />
+          <LoginModal />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/password/reset/:token" element={<Index />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Footer />
+        </div>
+        <ToastContainer />
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 
