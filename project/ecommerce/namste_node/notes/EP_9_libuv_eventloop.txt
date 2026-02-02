@@ -1,0 +1,8 @@
+==> Lib uv consist of 
+    1. Event loop
+    2. callback Ques
+    3. THREAD POOL
+
+
+==> JAVASCRIPT is single threaded synchronous language
+---> when v8 engine is busy then the lib uv maintain callback ques and then send to v8 engine call stack
