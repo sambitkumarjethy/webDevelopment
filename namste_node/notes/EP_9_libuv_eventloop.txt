@@ -6,3 +6,10 @@
 
 ==> JAVASCRIPT is single threaded synchronous language
 ---> when v8 engine is busy then the lib uv maintain callback ques and then send to v8 engine call stack
+===> The main task of Libuv is Asyncronous I/O (Non blocking I/O) 
+
+
+WHEN TASK IS LOADED TO LIBUV . WHAT HAPPENS next?
+__________________________________________________
+
+-> When the async ask of lib uv is over then it maintains a call stack and when the syncrorous task of v8 engine is over(i.e call stack of v8 engine is over) then LIBUV call stack is executed.
