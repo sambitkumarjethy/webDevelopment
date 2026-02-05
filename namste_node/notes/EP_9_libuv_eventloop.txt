@@ -29,3 +29,14 @@ _______________
  2. Poll Phase  -> I/O callback, incomming connections, hhtp call,  data,fs,crypto,http.get (operations is performed)
  3. check Phase -> setImmediate  (operations is performed)
  4. close -> All close operation is performed (ex- socket.on(close))
+
+
+process.nextTick() ⟺ promise callbacks
+process.nextTick() and promise callbacks execute each time before any phase start (4 major phase)
+
+process.nextTick(cb)
+process.resolve(cb)
+setTimeout(cb,0)
+setImmediate(cb)
+fs.readfile("./file.txt",cb)
+https.get("URL",cb)
