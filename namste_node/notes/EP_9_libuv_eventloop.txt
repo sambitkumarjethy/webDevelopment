@@ -40,3 +40,14 @@ setTimeout(cb,0)
 setImmediate(cb)
 fs.readfile("./file.txt",cb)
 https.get("URL",cb)
+
+Execution steps
+_______________
+1. process.nextTick(cb) by process.nextTick()
+2. process.resolve(cb)
+3. Now it will again check  process.nextTick() and romise callbacks
+4. Now the poll cycle will  fs.readfile("./file.txt",cb) and https.get("URL",cb) will be executed.
+5. Again the event loop will again check  process.nextTick() and romise callbacks
+6. And then it will go to check Phase it will check for setImmediate callback
+7. then it will go to the close phase and check for socket connection if present it will close
+and it will again go to timmer phase and the cycle continues.
