@@ -51,3 +51,5 @@ _______________
 6. And then it will go to check Phase it will check for setImmediate callback
 7. then it will go to the close phase and check for socket connection if present it will close
 and it will again go to timmer phase and the cycle continues.
+
+need to continue with nodejs learning
