@@ -1,0 +1,667 @@
+{
+  "info": {
+    "_postman_id": "ff16323f-8aa9-4c22-a9d7-e44c454c5bb4",
+    "name": "mern stack_ecommerce application",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "40274573"
+  },
+  "item": [
+    {
+      "name": "AuthRoutes",
+      "item": [
+        {
+          "name": "REGISTER",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\" : \"sambit Kumar jethy\",\r\n    \"email\":\"jethysambit@gmail.com\",\r\n    \"password\":\"password\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/v1/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "LOGIN",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"jethysambit@gmail.com\",\r\n    \"password\":\"000000001\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/v1/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GETUSER",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/v1/auth/me",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "LOGOUT",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/v1/auth/logout",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "forgot Password",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"jethysambit@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/v1/auth/password/forgot",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "password",
+                "forgot"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "RESETPASSWORD",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"password\":\"00000000\",\r\n    \"confirmpassword\":\"00000000\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/v1/auth/password/reset/6c8a0447d788121e20db4f358f938c1038c480b0",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "password",
+                "reset",
+                "6c8a0447d788121e20db4f358f938c1038c480b0"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "UPDATE PASSWORD",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"currentPassword\":\"00000000\",\r\n    \"newPassword\":\"000000001\",\r\n    \"confirmNewPassword\":\"000000001\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/v1/auth/password/update",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "password",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "UPDATEPROFILE",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Sambit Jethys",
+                  "type": "text",
+                  "uuid": "4a6381ca-4be1-4cda-8d20-4e2f3f08ae7a"
+                },
+                {
+                  "key": "email",
+                  "value": "jethysambit@gmail.com",
+                  "type": "text",
+                  "uuid": "a3b57559-0709-4fa0-86d9-aca2450be406"
+                },
+                {
+                  "key": "avtar",
+                  "type": "file",
+                  "uuid": "8a03421a-1d77-4d0d-a16d-327fc53a3d40",
+                  "src": "/C:/Users/Sambit/Downloads/retouch_2025031220083570.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/v1/auth/profile/update",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "profile",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "PRODUCT ROUTES",
+      "item": [
+        {
+          "name": "CREATE PRODUCT",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Samsung S25 Ultra",
+                  "type": "text",
+                  "uuid": "6b2abdfe-a2ac-4ce5-a5c8-10eef4a1937a"
+                },
+                {
+                  "key": "stock",
+                  "value": "12",
+                  "type": "text",
+                  "uuid": "e6fd77cf-0df8-4a38-ba36-8aa50478972c"
+                },
+                {
+                  "key": "description",
+                  "value": "A latestsmart phone.",
+                  "type": "text",
+                  "uuid": "50c3334d-7af9-4069-aee7-26c881bc19ca"
+                },
+                {
+                  "key": "category",
+                  "value": "SMART_PHONES",
+                  "type": "text",
+                  "uuid": "dc04fbae-9bd0-4637-9eb0-f8f595038cd2"
+                },
+                {
+                  "key": "price",
+                  "value": "99000",
+                  "type": "text",
+                  "uuid": "6c356021-47ed-4272-8831-7a144eff86f9"
+                },
+                {
+                  "key": "images",
+                  "type": "file",
+                  "uuid": "181f96bf-6bb4-46ab-92d5-029a5b48cde4",
+                  "src": [
+                    "/D:/project_images/s25_ultra.PNG",
+                    "/D:/project_images/s25_ultra_multi_color.PNG"
+                  ]
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/v1/product/admin/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "v1",
+                "product",
+                "admin",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FETCH ALL PRODUCTS",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/v1/product?category=SMART_PHONES",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "v1",
+                "product"
+              ],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "SMART_PHONES"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "UPDATE PRODUCT",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Samsung S25 Ultra Max",
+                  "type": "text",
+                  "uuid": "6fad1f41-9431-41eb-95d3-2c988a33b55e"
+                },
+                {
+                  "key": "stock",
+                  "value": "30",
+                  "type": "text",
+                  "uuid": "e030fbc8-d51d-4ed0-873e-fed830ba04d0"
+                },
+                {
+                  "key": "description",
+                  "value": "A latestsmart phone 2025.",
+                  "type": "text",
+                  "uuid": "f357b38a-8a50-46ed-b68f-1437c059ecfd"
+                },
+                {
+                  "key": "price",
+                  "value": "99900.00",
+                  "type": "text",
+                  "uuid": "6d7d212b-2503-4f3c-9b79-947bf5ba7514"
+                },
+                {
+                  "key": "category",
+                  "value": "SMART_PHONES",
+                  "type": "text",
+                  "uuid": "f4747f70-8dde-4980-93ed-04e864aeb6ee"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/v1/product/admin/update/34056763-b533-44f4-aedd-12bc0679f3cb",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "v1",
+                "product",
+                "admin",
+                "update",
+                "34056763-b533-44f4-aedd-12bc0679f3cb"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE PRODUCT",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/v1/product/admin/delete/f9d81413-a5b4-46c3-86e9-1916d19babaa",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "v1",
+                "product",
+                "admin",
+                "delete",
+                "f9d81413-a5b4-46c3-86e9-1916d19babaa"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FETCH SINGLE PRODUCT",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/v1/product/singleProduct/34056763-b533-44f4-aedd-12bc0679f3cb",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "v1",
+                "product",
+                "singleProduct",
+                "34056763-b533-44f4-aedd-12bc0679f3cb"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST PRODUCT REVIEW",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"rating\":\"4.3\",\r\n    \"comment\":\"Good product ! must buy.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/v1/product/post-new/review/34056763-b533-44f4-aedd-12bc0679f3cb",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "v1",
+                "product",
+                "post-new",
+                "review",
+                "34056763-b533-44f4-aedd-12bc0679f3cb"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE PRODUCT REVIEW",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"rating\":\"4.3\",\r\n    \"comment\":\"Good product ! must buy.\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/v1/product/delete/review/34056763-b533-44f4-aedd-12bc0679f3cb",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "v1",
+                "product",
+                "delete",
+                "review",
+                "34056763-b533-44f4-aedd-12bc0679f3cb"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PRODUCT AI SEARCH",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"userPrompt\":\"Filter a good smart phone for me having best camera\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/v1/product/ai-search",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "v1",
+                "product",
+                "ai-search"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "ADMIN ROUTES",
+      "item": [
+        {
+          "name": "GET ALL USERS",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/v1/admin/getallUsers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "getallUsers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/v1/admin/delte/e599da0c-713d-437c-8933-dc26c8ce93d3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "delte",
+                "e599da0c-713d-437c-8933-dc26c8ce93d3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET DASHBOARD STATS",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "ORDER ROUTES",
+      "item": [
+        {
+          "name": "PLACE NEW ORDER",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"full_name\": \"Manav Meheta\",\r\n    \"state\":\"Odisha\",\r\n    \"city\":\"cuttack\",\r\n    \"country\":\"India\",\r\n    \"address\":\"Manglabag cuttack\",\r\n    \"pincode\":\"753001\",\r\n    \"phone\":\"1234567890\",\r\n    \"ordeeredItems\":[\r\n        {\r\n            \"product\": {\r\n            \"id\":\"34056763-b533-44f4-aedd-12bc0679f3cb\",\r\n            \"images\":[\r\n                {\"url\":\"https://res.cloudinary.com/dq0gguz3k/image/upload/v1768144126/Ecommerce_Product_Iamge/elenswmbxmrmf2kc0bv6.png\"}\r\n            ],\r\n            \"quantity\":2\r\n            }\r\n        },\r\n         {\r\n            \"product\": {\r\n              \"id\":  \"34056763-b533-44f4-aedd-12bc0679f3ca\",\r\n            \"images\":[\r\n                {\"url\":\"https://res.cloudinary.com/dq0gguz3k/image/upload/v1768144126/Ecommerce_Product_Iamge/elenswmbxmrmf2kc0bv6.png\"}\r\n            ],\r\n            \"quantity\":2\r\n            }\r\n        }\r\n        \r\n        \r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/v1/order/new",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "v1",
+                "order",
+                "new"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

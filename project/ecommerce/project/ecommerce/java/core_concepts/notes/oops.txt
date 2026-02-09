@@ -1,0 +1,25 @@
+1. Constructor -> it is used to create (Java) Objects.
+
+Constructors are of 3 types
+____________________________
+
+
+1. Non Parameterized constructor
+    Properties of Parameterized constructor
+    ________________________________________
+        1. functions that do not have parameters
+        2. Class name must be same as Object name
+        3. For One object only one time constructor can be called
+
+
+ 2. Parametrized Constructor
+
+    Properties
+    __________________
+    1. Parameters are passed in Object of the class and constructor use it to assign the properties value of class
+
+ 3. Copy Constructor
+
+    it is used to copy ine object to another object
+
+

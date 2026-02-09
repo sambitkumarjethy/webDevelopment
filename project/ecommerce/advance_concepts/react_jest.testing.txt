@@ -1,0 +1,45 @@
+#setting up testing in our App
+- Install React Testing ..'
+- Installed jest
+-  Installed babel dependency
+- -Configure babel
+- configure Parcel config file to disable default babel transpilation
+- Jest  -npx jest -init
+- Install jsdom library
+- Insatll @babel/preset-react - to make Jsx work in test cases
+- Include @babel/preset-react - in to my babel config 
+
+
+--> __test__ is folder name to write test case with file name in the format
+        Headers.test.js
+        Headers.test.ts
+        Headers.spec.js
+        Headers.spec.ts
+ - - (double underscore is called dounder)
+
+ Example of test case of sum.js
+
+ import {sum} from "../sum"
+ test("Sum function should calculate the sum of two numbers",()=>{
+    const result = sum(3,4);
+    
+    // Assertion
+    expect(result).toBe(7);
+ })
+
+ UNIT TEST CASE REACT
+ ____________________________
+
+ -> create file contact.test.js
+
+ import { render, screen } from "@testing-library/react";
+ import Contact from "../Contact";
+
+ test("should load us component",()=>{
+   render(<Contact/>);
+
+   const heading = screen.getByRole("heading");
+
+   expect(heading).toBeInTheDocument();
+
+ })
