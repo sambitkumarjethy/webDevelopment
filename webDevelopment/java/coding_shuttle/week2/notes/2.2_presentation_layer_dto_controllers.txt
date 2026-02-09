@@ -1,0 +1,91 @@
+🌱 SPRING BOOT NOTES
+===================
+
+1) AUTO-CONFIGURATION
+---------------------
+- Spring Boot automatically configures your application based on dependencies in the classpath.
+- Removes the need for boilerplate XML configurations.
+- Uses @EnableAutoConfiguration (usually via @SpringBootApplication).
+- Example:
+    If "spring-boot-starter-web" is present → Spring auto-configures Tomcat + DispatcherServlet.
+
+Key Annotations:
+- @SpringBootApplication = @Configuration + @EnableAutoConfiguration + @ComponentScan
+
+Benefits:
+- Reduces manual setup
+- Fast development
+- Convention over configuration
+
+---
+
+2) INTERNAL WORKING OF SPRING BOOT
+----------------------------------
+Step 1: Main class has @SpringBootApplication
+Step 2: SpringApplication.run() → bootstraps application
+Step 3: Creates ApplicationContext
+Step 4: Auto-Configuration kicks in
+Step 5: Embedded server (Tomcat/Jetty) starts automatically
+Step 6: DispatcherServlet handles requests (for web apps)
+
+---
+
+3) PRESENTATION LAYER FLOW
+--------------------------
+Client → Controller → Service → Repository/DAO → Database
+
+- DTO (Data Transfer Object) is used to transfer data between layers.
+
+---
+
+4) ANNOTATION CONTROLLER
+------------------------
+- @Controller → Returns a view (Thymeleaf/JSP).
+- @RestController → Shortcut for @Controller + @ResponseBody
+  → Returns data (JSON/XML) directly to response body.
+
+---
+
+5) REQUEST MAPPING
+------------------
+- @RequestMapping → Maps HTTP requests to handler methods.
+- Attributes:
+    - URL
+    - HTTP method
+    - Request parameters
+    - Headers
+    - Media types
+
+Shortcut annotations:
+- @GetMapping
+- @PostMapping
+- @PutMapping
+- @DeleteMapping
+- @PatchMapping
+
+---
+
+6) DYNAMIC URL HANDLING
+-----------------------
+@PATHVARIABLE:
+---------------
+Example: /employees/123
+- Extracts value from URL path.
+- Used when parameter is part of resource identity.
+
+@REQUESTPARAM:
+---------------
+Example: /employees?id=123
+- Extracts value from query string.
+- Commonly used for filtering, sorting, optional params.
+
+---
+
+7) REQUEST BODY
+---------------
+- @RequestBody → Maps HTTP request body to a Java object.
+- Example: JSON/XML sent by client → mapped to POJO automatically.
+
+---
+
+✅ END OF NOTES

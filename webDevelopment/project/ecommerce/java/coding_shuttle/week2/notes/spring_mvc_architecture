@@ -1,0 +1,128 @@
+🌱 How does Web Server work in Spring Boot?
+
+Client (Browser / Postman)  --->  Request  --->  Server (APIs)
+Client <--- Response (APIs) <---  Server
+
+APIs → Application Programming Interface
+
+
+🌱 MVC Architecture (Model-View-Controller)
+
+Client Request
+     |
+     v
++-----------+       +-----------+       +-----------+
+|   View    | <---- | Controller| <---- |   Model   |
+| (HTML)    |       | (Handles  |       | (Data,    |
+|           | ----> | Request)  | ----> | DB Access)|
++-----------+       +-----------+       +-----------+
+     |
+     v
+Client Response
+
+- Model → Application data (communicates with DB)
+- Controller → Request processor (business logic)
+- View → HTML/Template returned to client
+
+
+🌱 Spring MVC (Traditional Flow)
+
+1. Request → DispatcherServlet
+2. DispatcherServlet → Handler Mapping (find controller)
+3. DispatcherServlet → Handler Adapter
+4. Controller executes request
+   → Calls Service (Business Logic)
+   → Service → Repository → Database
+5. Controller returns (Model + View Name)
+6. DispatcherServlet → View Resolver
+7. DispatcherServlet → View (with Model)
+8. Response → Client
+
+Diagram:
+
+Request
+   |
+   v
++------------------+      +----------------+      +-----------+
+| DispatcherServlet| ---> | HandlerMapping | ---> | Controller|
++------------------+      +----------------+      +-----------+
+        |                        ^                     |
+        |                 +----------------+           |
+        |                 | HandlerAdapter |           |
+        |                 +----------------+           |
+        |                                            (Business Logic)
+        |                                             +-----------+
+        |                                             |  Service  |
+        |                                             +-----------+
+        |                                                   |
+        |                                             +-----------+
+        |                                             |Repository |
+        |                                             +-----------+
+        |                                                   |
+        |                                                 +------+
+        |                                                 |  DB  |
+        |                                                 +------+
+        v
++----------------+
+| View Resolver  |
++----------------+
+        |
+        v
+     +-------+
+     |  View |
+     +-------+
+        |
+        v
+    Response
+
+
+🌱 Roles of DispatcherServlet
+
+1. It creates HTTPServletRequest & HTTPServletResponse objects.
+2. Delegates request to Handler Mapping.
+3. Invokes Controller methods.
+
+🌱 Roles of Controller
+
+- Validation
+- Authentication
+- Business Logic
+- DB Queries
+
+
+🌱 Flow in Spring Boot with REST
+
+Browser/Postman
+   ↓
+Embedded Tomcat
+   ↓
+DispatcherServlet
+   ↓
+HandlerMapping → Which Controller method
+   ↓
+Controller method returns (POJO/DTO)
+   ↓
+HTTP Message Converter (JSON)
+   ↓
+DispatcherServlet writes HTTP Response
+   ↓
+Client gets JSON
+
+
+🌱 3-Layer Architecture
+
+Client Request
+   ↓
+Presentation Layer → Handles Request/Response
+   ↓
+DTO (Data Transfer Object)
+   ↓
+Service Layer → Business Logic
+   ↓
+Entity
+   ↓
+Repository Layer → DB Queries
+   ↓
+Database
+   ↓
+Response back to Client

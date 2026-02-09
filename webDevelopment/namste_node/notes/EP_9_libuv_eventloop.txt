@@ -1,0 +1,57 @@
+==> Lib uv consist of 
+    1. Event loop
+    2. callback Ques
+    3. THREAD POOL
+
+
+==> JAVASCRIPT is single threaded synchronous language
+---> when v8 engine is busy then the lib uv maintain callback ques and then send to v8 engine call stack
+===> The main task of Libuv is Asyncronous I/O (Non blocking I/O) 
+
+
+WHEN TASK IS LOADED TO LIBUV . WHAT HAPPENS next?
+__________________________________________________
+
+-> When the async ask of lib uv is over then it maintains a call stack and when the syncrorous task of v8 engine is over(i.e call stack of v8 engine is over) then LIBUV call stack is executed.
+
+Eventloop -> Jib is to keep checking callback ques and call stack when call stack is empty it will give it to v8 engine call stack
+ -> IMP - . Its Job is to push the event in to v8 call stack in correct order and correct time prioritizing the task.
+
+
+ EVENTLOOP 
+ ===============
+
+ TIMMER ==> POLL ==> CHECK ==>CLOSE (its a circular loop)
+
+4 Major Phase
+_______________
+ 1. Timmer Phase -> setTimeout (operations is performed)
+ 2. Poll Phase  -> I/O callback, incomming connections, hhtp call,  data,fs,crypto,http.get (operations is performed)
+ 3. check Phase -> setImmediate  (operations is performed)
+ 4. close -> All close operation is performed (ex- socket.on(close))
+
+
+process.nextTick() ⟺ promise callbacks
+process.nextTick() and promise callbacks execute each time before any phase start (4 major phase)
+
+process.nextTick(cb)
+process.resolve(cb)
+setTimeout(cb,0)
+setImmediate(cb)
+fs.readfile("./file.txt",cb)
+https.get("URL",cb)
+
+Execution steps
+_______________
+1. process.nextTick(cb) by process.nextTick()
+2. process.resolve(cb)
+3. Now it will again check  process.nextTick() and romise callbacks
+4. Now the poll cycle will  fs.readfile("./file.txt",cb) and https.get("URL",cb) will be executed.
+5. Again the event loop will again check  process.nextTick() and romise callbacks
+6. And then it will go to check Phase it will check for setImmediate callback
+7. then it will go to the close phase and check for socket connection if present it will close
+and it will again go to timmer phase and the cycle continues.
+
+Real world code example
+========================
+

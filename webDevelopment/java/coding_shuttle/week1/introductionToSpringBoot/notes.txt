@@ -1,0 +1,254 @@
+Fundamentals
+__________________
+
+1.core Foundation
+2. Advance Java (JDBC, JSP, Servelet)
+3. Java 8 ( 8 Features)
+4. OOPS
+5. Spring Boot
+
+
+@SpringBootApplication
+________________________
+
+1. It is the starting point of application
+2. One application can have only one SpringBootApplication
+3. Every thing is a Bean in spring Boot Application
+
+
+1.5 Spring Boot vs Spring Framework
+____________________________________________
+
+1. Starter Dependency → The dependency on Pom.xml.
+Auto Configuration → Means will put all the dependency in class and auto configuration.
+Example: External Library → springframework.boot:spring-boot-autoconfigure:3.5.4
+
+
+2. Externalized Configuration
+Example: application.properties, Environment Variables
+
+
+3. Embedded Tomcat Jetty Servers
+Example: Dependency listed in Pom.xml file
+
+
+4. Built-in metrics & Health Checks
+Here the dependency version is managed by Spring Boot.
+Example: version of MongoDB.
+
+
+1.6 = Auto Configurations, Application Context and Internal working of a Spring Application.
+___________________________________________________________________________
+
+Pom.xml → Maven is a popular build automation tool used in many Java projects. In Spring Boot project, dependencies are specified in pom.xml file.
+Maven then also resolves these dependencies and includes them in the classpath.
+
+
+→ Starter like Spring Boot Starter
+Stater (sic) usually include a ton of third-party libraries onto your project by default.
+Its Auto Configuration uses these dependencies to setup and pre-config these libraries automatically.
+
+What is Auto Configuration?
+_____________________
+Auto Configuration refers to the mechanism that automatically configures Spring Boot app based on dependencies present on the
+ classpath and other application-specific settings.
+
+This feature simplifies the setup and development process allowing developers to focus more on writing business logic rather than configuring the framework.
+
+
+Steps How AutoConfiguration Works
+_______________________________
+
+(1) Class Path Scanning
+
+Spring Boot scans the classpath for the presence of certain libraries and classes.
+
+Based on what it finds, it applies corresponding configurations.
+
+(2) Configuration Classes
+
+Spring Boot contains numerous auto-configuration classes, each responsible for configuring a specific part of the application.
+
+
+(3) Conditional Beans
+
+
+Each auto-configuration class uses conditional checks to decide if it should be applied.
+
+These conditional checks include the presence of specific classes, the absence of user-defined beans, and specific property settings.
+
+In short:
+
+Scan the classpath and find libraries and classes.
+
+Find its corresponding class and suitable auto-configuration class.
+
+Use conditional checks for multiple different features, deciding whether to configure or not.
+
+
+Core Features of AutoConfiguration
+________________________________
+
+(1) @PropertySources Auto-registration
+
+When you run the main method of your Spring Boot Application, SB will automatically register it if the property sources are found.
+
+It creates all beans on application start-up.
+
+(2) META-INF / Spring.factories (Spring Boot)
+
+The AutoConfiguration imports everything.
+
+(3) Every SB project has a dependency on the following library:
+
+    org.springframework.boot.autoconfigure
+
+    This contains a sample list in the file spring.factories, which pretty much auto-configures all of the Spring Boot magic.
+
+    Advanced Conditional Statements Support
+
+    Spring Boot comes with its own set of additional @Conditional annotations, which make developers’ lives easier.
+
+Examples:
+
+@ConditionalOnBean(DataSource.class) → Condition is true only if a DataSource @Bean is in a @Configuration.
+
+@ConditionalOnClass(DataSource.class) → Condition is true if the DataSource class is on the classpath.
+
+@ConditionalOnProperty("my.property") → Condition is true if my.property is set.
+
+So basically, Spring Boot includes a bunch of auto-configurations (classes annotated with @Configuration)
+that create @Beans for you if certain @Conditions are met.
+
+Application Context
+    |
+    |--- IOC Container
+             |
+             |--- Component Scanning
+             |
+             |--- Configuration
+                     |
+                     |--- External Configuration (Properties, YAML)
+                     |
+                     |--- Conditional Beans
+                             |
+                             |--- POJO Class
+                             |--- Spring Payment
+                             |--- Razor Payment
+
+
+
+Internal Working of Spring Boot
+___________________
+
+Flow Diagram Explanation
+
+POJO Classes
+
+StripePayment
+
+RazorpayPayment
+
+These classes go into IOC Container via Component Scanning.
+
+External Configurations (environment variables, property files) are also fed into the IOC Container.
+
+IOC Container then creates the Application Context (bunch of beans).
+
+
+
+Step-by-Step Process
+________________________
+
+JVM starts and main() method is executed.
+
+SpringApplication.run(MyApp.class, args) is called.
+
+Spring Boot detects:
+
+@SpringBootApplication on MyApp.class, which includes:
+
+@SpringBootConfiguration → Marks as @Configuration.
+
+@ComponentScan → Scans current package & sub-packages.
+
+@EnableAutoConfiguration → Loads auto-configs from spring.factories.
+
+Creates a SpringApplication object:
+
+Sets up ApplicationContext.
+
+Sets up Environment.
+
+Registers Listeners and Initializers.
+
+ApplicationContext is created.
+
+Environment is prepared (e.g., application.properties, args, profiles).
+
+Beans are scanned and registered via @ComponentScan and auto-configured beans are registered (e.g., DataSource, WebServer).
+
+ApplicationContext is refreshed:
+
+All beans are created.
+
+Dependencies are autowired.
+
+Lifecycle methods are called.
+
+Embedded Web Server (e.g., Tomcat) is started.
+
+CommandLineRunner or ApplicationRunner beans (if any) are executed.
+
+Application is now fully started and ready to serve requests.
+
+
+
+# Maven Notes
+
+## 1. Introduction to Maven
+- Maven is a build automation tool and project management tool primarily used for Java projects.
+- It plays a crucial role in the development, build, and dependency management of applications, including those using Spring Framework’s component scanning and annotation-driven configuration.
+
+## 2. Maven as a Chef (Analogy)
+- POM.xml → Recipe
+- Maven → Chef
+- Dependencies (Libraries) → Ingredients (Vegetables)
+- Final Application → Food
+
+Maven reads the POM.xml (recipe), gathers the required dependencies (ingredients), and prepares the application (food).
+
+## 3. Project & Dependency Management
+- POM (Project Object Model):
+  Defines project structure, dependencies, and build configuration using declarative XML format (pom.xml).
+
+- Maven provides:
+  - A standardized way to manage Java projects.
+  - Dependency management, plugins, repositories, and project metadata.
+
+- Spring Framework modules (Spring Core, Spring MVC, Spring Boot, etc.) are managed as dependencies in Maven projects.
+  Developers specify dependencies in the pom.xml and Maven handles the rest.
+
+## 4. Build Automation
+- Maven automates the build process, including:
+  - Compilation
+  - Testing
+  - Packaging
+  - Deployment
+
+- Uses predefined build lifecycle phases.
+
+## 5. Maven Lifecycle (Default)
+1. Validate – Validate the project is correct.
+2. Compile – Compile the source code.
+3. Test – Run unit tests.
+4. Package – Package compiled code into JAR/WAR.
+5. Integration Test – Run integration tests.
+6. Verify – Perform checks on integration tests.
+7. Install – Install the package into local repository.
+8. Deploy – Copy final package to remote repository.
+
+## 6. Deployment
+- Maven facilitates building and packaging Spring applications into deployable artifacts (e.g., JAR files, WAR files).
+- These artifacts can then be deployed in production environments.
+
