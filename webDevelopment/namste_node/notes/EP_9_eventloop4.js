@@ -2,9 +2,21 @@ const fs = require("fs");
 setImmediate(() => console.log("setImmediate"));
 setTimeout(() => {
   console.log("Timmer expired");
+
+  process.nextTick(() => {
+    console.log("nextTick inside setTimeout");
+  });
 }, 0);
 Promise.resolve(() => {
-  console.log("Promise");
+  console.log("Promise only resolve");
+});
+
+Promise.resolve().then(() => {
+  console.log("Promise with tehn");
+
+  process.nextTick(() => {
+    console.log("nextTick inside Promise");
+  });
 });
 fs.readFile("./notes.txt", "utf8", () => {
   console.log("File Reading CB.");
