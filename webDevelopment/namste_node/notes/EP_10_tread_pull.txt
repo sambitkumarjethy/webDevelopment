@@ -1,0 +1,8 @@
+TIMMER ==>  PENDING CALLBACKS ==> IDLE,PREPARE ==> POLL ==> CHECK ==>CLOSE (its a circular loop)
+
+TICK ==> The complete cycle is called one TICK
+PENDING CALLBACKS -> Executes I/O call backs diffred to next ittration (TICK)
+IDLE,PREPARE -> only used internally
+
+As inside node js libuv runs there is another diagram of event loop 
+https://docs.libuv.org/en/v1.x/design.html

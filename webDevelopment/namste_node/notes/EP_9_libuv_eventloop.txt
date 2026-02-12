@@ -54,4 +54,3 @@ and it will again go to timmer phase and the cycle continues.
 
 Real world code example
 ========================
-
