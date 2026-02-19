@@ -7,5 +7,29 @@ IDLE,PREPARE -> only used internally
 As inside node js libuv runs there is another diagram of event loop 
 https://docs.libuv.org/en/v1.x/design.html
 
-to continue on 15th
-seen typescript vdiofor 30 mins
+THREAD POOL
+___________________
+when we are making a file system (read a file) call / cryto => it goes to event loop => then goes to thread pool 
+                                                    => Then  it request the  OS then the file is read
+                                                    => returns back to thread pool ( the particular thread is blocked)
+
+==> UV_THREAD_POLL_SIZE = 4 ( By default)
+
+Q> WHAT WILL HAPEN WHEN 5 FS CALL MADE SYMOLTANIOUSLY ? COZ UV_THREAD_POLL_SIZE is 4?
+===================================================================================
+ANS > it will wait for one thread to be empty
+
+
+=> fs - dns.lookup - crypto
+      - user specified input
+
+Q> is node js single thraded or multi thread ?
+===================================================================================
+ANS > when we run syncronous code then node js is single threaded.
+    when we we are readong a life which require libuv and thread poll it is a multi threaded (when file read operation) .
+
+    When we run synchronous code, Node.js is single-threaded because the main
+    JavaScript thread executes the code and blocks the event loop.
+
+    When we perform operations like file reading, Node.js uses libuv and its
+    thread pool, making it multi-threaded internally.
