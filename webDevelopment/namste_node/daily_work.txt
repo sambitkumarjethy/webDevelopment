@@ -2,3 +2,4 @@
 17-02-2026 - late from office due to prod release
 18-02-2026 - Watched typescript video and learned types in Ts and union and any
 20-02-2026 - late from office due to prod release
+21-02-2026 - late from office due to prod release
