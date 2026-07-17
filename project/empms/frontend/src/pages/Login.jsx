@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -15,6 +16,16 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
+    const { email, password } = formData;
+    try {
+      const response = await axios.post("http://localhost:300/api/auth/login", {
+        email,
+        password,
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="min-h-screen bg-slate-900 flex items-center justify-center px-4">
