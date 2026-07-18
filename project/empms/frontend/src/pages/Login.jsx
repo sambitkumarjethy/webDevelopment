@@ -6,6 +6,7 @@ function Login() {
     email: "",
     password: "",
   });
+  const [error, setError] = useState(null);
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -22,9 +23,16 @@ function Login() {
         email,
         password,
       });
+
+      if (response.data.success) {
+        alert("successfully login");
+      }
       console.log(response);
     } catch (error) {
-      console.log(error);
+      setError(
+        error.response?.data?.error ||
+          "Something went wrong. Please try again.",
+      );
     }
   };
   return (
@@ -40,6 +48,7 @@ function Login() {
         <p className="text-center text-slate-300 mt-2 mb-8">
           Login to your account
         </p>
+        {error && <p className="text-red-500">{error}</p>}
 
         <form className="space-y-5" onSubmit={handleSubmit}>
           <div>

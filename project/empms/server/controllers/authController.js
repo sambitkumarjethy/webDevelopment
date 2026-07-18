@@ -6,13 +6,13 @@ const login = async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
-      res.status(404).json({ success: false, error: "User Not Found" });
+      return res.status(404).json({ success: false, error: "User Not Found" });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      res
-        .status(404)
+      return res
+        .status(401)
         .json({ success: false, error: "User or password Invalid" });
     }
 
@@ -27,7 +27,10 @@ const login = async (req, res) => {
       user: { id: user._id, name: user.name, role: user.role },
     });
   } catch (error) {
-    console.log(error.message);
+    res.status(500).json({
+      success: false,
+      error: error.message,
+    });
   }
 };
 export { login };
