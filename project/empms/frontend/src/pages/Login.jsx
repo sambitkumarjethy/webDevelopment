@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useAuth } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -7,6 +9,10 @@ function Login() {
     password: "",
   });
   const [error, setError] = useState(null);
+  const { login } = useAuth();
+
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -25,7 +31,13 @@ function Login() {
       });
 
       if (response.data.success) {
-        alert("successfully login");
+        login(response.data.user);
+        localStorage.setItem("token", response.data.token);
+        if (response.data.user.role === "admin") {
+          navigate("/admin-dashboard");
+        } else {
+          navigate("/employee-dashboard");
+        }
       }
       console.log(response);
     } catch (error) {
@@ -74,6 +86,7 @@ function Login() {
               name="password"
               value={formData.password}
               onChange={handleChange}
+              required
             />
           </div>
 

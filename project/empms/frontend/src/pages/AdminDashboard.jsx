@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
+import { useAuth } from "../context/authContext";
 
 function AdminDashboard() {
-  return (
-    <div>AdminDashboard</div>
-  )
+  const { user } = useAuth();
+  return <div>AdminDashboard {user.name}</div>;
 }
 
-export default AdminDashboard
+export default AdminDashboard;
