@@ -29,7 +29,7 @@ function Login() {
         email,
         password,
       });
-
+      console.log(response);
       if (response.data.success) {
         login(response.data.user);
         localStorage.setItem("token", response.data.token);
@@ -39,7 +39,6 @@ function Login() {
           navigate("/employee-dashboard");
         }
       }
-      console.log(response);
     } catch (error) {
       setError(
         error.response?.data?.error ||
