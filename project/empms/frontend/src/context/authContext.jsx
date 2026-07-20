@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 const UserContext = createContext();
 function AuthContext({ children }) {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = usestate(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,12 +34,15 @@ function AuthContext({ children }) {
         } else {
           localStorage.removeItem("token");
           setUser(null);
+          setLoading(false);
         }
       } catch (error) {
         console.error("Verification failed:", error);
 
         localStorage.removeItem("token");
         setUser(null);
+      } finally {
+        setLoading(false);
       }
     };
 
