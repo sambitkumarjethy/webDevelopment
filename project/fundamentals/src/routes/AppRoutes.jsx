@@ -1,18 +1,25 @@
 import { Routes, Route } from "react-router-dom";
 import Notfound from "../components/pages/Notfound";
-import Login from "../components/pages/Login";
-import Master from "../components/pages/Master";
-import Transaction from "../components/pages/Transaction";
+import Dashboard from "../components/pages/Dashboard";
+import MainLayout from "../layouts/MainLayout";
 
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/master" element={<Master />} />
-      <Route path="/transaction" element={<Transaction />} />
+      <Route element={<MainLayout />}>
+        <Route index element={<Dashboard />} />
 
-      {/* 404 */}
-      <Route path="*" element={<Notfound />} />
+        <Route path="users" element={<div>Users</div>} />
+
+        <Route path="roles" element={<div>Roles</div>} />
+
+        <Route path="permissions" element={<div>Permissions</div>} />
+
+        <Route path="applications" element={<div>Applications</div>} />
+
+        {/* 404 */}
+        <Route path="*" element={<Notfound />} />
+      </Route>
     </Routes>
   );
 }

@@ -1,10 +1,9 @@
-import Navbar from "./components/Navbar";
+import MainLayout from "./layouts/MainLayout";
 import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   return (
     <>
-      <Navbar />
       <AppRoutes />
     </>
   );
