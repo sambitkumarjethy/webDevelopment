@@ -31,8 +31,8 @@ export default function Sidebar() {
           Roles
         </NavLink>
 
-        <NavLink to="/permissions" className={menuClass}>
-          Permissions
+        <NavLink to="/auditlogs" className={menuClass}>
+          Audit Logs
         </NavLink>
 
         <NavLink to="/applications" className={menuClass}>

@@ -2,6 +2,9 @@ import { Routes, Route } from "react-router-dom";
 import Notfound from "../components/pages/Notfound";
 import Dashboard from "../components/pages/Dashboard";
 import MainLayout from "../layouts/MainLayout";
+import UserList from "../components/pages/UserList";
+import RoleList from "../components/pages/RoleList";
+import AuditLogs from "../components/pages/AuditLogs";
 
 export default function AppRoutes() {
   return (
@@ -9,11 +12,11 @@ export default function AppRoutes() {
       <Route element={<MainLayout />}>
         <Route index element={<Dashboard />} />
 
-        <Route path="users" element={<div>Users</div>} />
+        <Route path="users" element={<UserList />} />
 
-        <Route path="roles" element={<div>Roles</div>} />
+        <Route path="roles" element={<RoleList />} />
 
-        <Route path="permissions" element={<div>Permissions</div>} />
+        <Route path="auditlogs" element={<AuditLogs />} />
 
         <Route path="applications" element={<div>Applications</div>} />
 
