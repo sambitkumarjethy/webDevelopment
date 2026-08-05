@@ -21,10 +21,17 @@ function DataGrid({
   onPageChange,
   onPageSizeChange,
   onSearch,
+  sorting,
+  onSortingChange,
 }) {
   const table = useReactTable({
     columns,
     data,
+    state: {
+      sorting,
+    },
+    onSortingChange,
+    manualSorting: true,
     getCoreRowModel: getCoreRowModel(),
   });
 
@@ -40,12 +47,20 @@ function DataGrid({
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className="whitespace-nowrap px-4 py-3 text-left text-sm font-semibold text-slate-700 dark:text-slate-100"
+                    className="cursor-pointer select-none px-4 py-3 text-left font-semibold"
+                    onClick={header.column.getToggleSortingHandler()}
                   >
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext(),
-                    )}
+                    <div className="flex items-center gap-2">
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
+
+                      {{
+                        asc: "▲",
+                        desc: "▼",
+                      }[header.column.getIsSorted()] ?? "⇅"}
+                    </div>
                   </th>
                 ))}
               </tr>

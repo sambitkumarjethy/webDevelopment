@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import useDebounce from "../../../hooks/useDebounce";
 
 function DataGridToolbar({ onSearch }) {
   const [keyword, setKeyword] = useState("");
+  const search = useDebounce(keyword);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -11,6 +13,10 @@ function DataGridToolbar({ onSearch }) {
 
     onSearch?.(value);
   };
+
+  useEffect(() => {
+    onSearch?.(search);
+  }, [search]);
 
   return (
     <div className="flex items-center justify-between border-b border-slate-200 p-4 dark:border-slate-700">
