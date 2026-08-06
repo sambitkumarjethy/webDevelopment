@@ -2,12 +2,15 @@ import { useEffect, useMemo, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import PageHeader from "../common/PageHeader";
 import DataGrid from "../common/DataGrid";
+import UserAddModal from "./UserAddModal";
 
 function UserList() {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [search, setSearch] = useState("");
   const [sorting, setSorting] = useState([]);
+  const [isAddOpen, setIsAddOpen] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   const users = [];
   const totalRows = 0;
@@ -58,8 +61,9 @@ function UserList() {
         subtitle="Manage application users and their access."
         breadcrumbs={[{ label: "Masters", path: "/" }, { label: "Users" }]}
         actionLabel="Add User"
-        actionTo="/users/add"
+        onActionClick={() => setIsAddOpen(true)}
         icon={FaPlus}
+        onActionClick={() => setIsAddOpen(true)}
       />
 
       <DataGrid
@@ -74,6 +78,11 @@ function UserList() {
         onSearch={setSearch}
         sorting={sorting}
         onSortingChange={setSorting}
+      />
+      <UserAddModal
+        isOpen={isAddOpen}
+        onClose={() => setIsAddOpen(false)}
+        onCreated={() => setRefreshKey((k) => k + 1)}
       />
     </>
   );
