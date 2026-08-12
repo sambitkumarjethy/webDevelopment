@@ -8,7 +8,7 @@ import {
   FaTimes,
 } from "react-icons/fa";
 import Modal from "../common/Modal";
-// import api from "../../api/axios";
+import api from "../../api/axios";
 
 const STEPS = [
   { id: 1, label: "Profile" },
@@ -153,9 +153,16 @@ function UserAddModal({ isOpen, onClose, onCreated }) {
       form.roleIds.forEach((id) => payload.append("roleIds[]", id));
       if (form.avatarFile) payload.append("avatar", form.avatarFile);
 
+      console.log({ form, payload });
+
+      for (const [key, value] of payload.entries()) {
+        console.log(key, value);
+      }
+
       const { data } = await api.post("/users", payload, {
         headers: { "Content-Type": "multipart/form-data" },
       });
+      //const { data } = await api.post("/users", payload);
       onCreated?.(data);
       handleClose();
     } catch (err) {
